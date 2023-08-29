@@ -1,0 +1,430 @@
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<ul id="list_cards">
+			<li class="card_container" data-pos="01" data-char="1"></li>
+			<li class="card_container" data-pos="02" data-char="2"></li>
+			<li class="card_container" data-pos="03" data-char="3"></li>
+			<li class="card_container" data-pos="04" data-char="4"></li>
+			<li class="card_container" data-pos="05" data-char="5"></li>
+			<li class="card_container" data-pos="06" data-char="6"></li>
+			<li class="card_container" data-pos="07" data-char="7"></li>
+			<li class="card_container" data-pos="08" data-char="8"></li>
+			<li class="card_container" data-pos="09" data-char="9"></li>
+			<li class="card_container" data-pos="10" data-char="10"></li>
+			<li class="card_box" data-left="0" data-top="340" data-val="01">
+				<figure class="card">
+					<img src="assets/01.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="120" data-top="340" data-val="02">
+				<figure class="card">
+					<img src="assets/02.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="240" data-top="340" data-val="03">
+				<figure class="card">
+					<img src="assets/03.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="360" data-top="340" data-val="04">
+				<figure class="card">
+					<img src="assets/04.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="480" data-top="340" data-val="05">
+				<figure class="card">
+					<img src="assets/05.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="600" data-top="340" data-val="06">
+				<figure class="card">
+					<img src="assets/06.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="720" data-top="340" data-val="07">
+				<figure class="card">
+					<img src="assets/07.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="840" data-top="340" data-val="08">
+				<figure class="card">
+					<img src="assets/08.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="0" data-top="509" data-val="09">
+				<figure class="card">
+					<img src="assets/09.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="120" data-top="509" data-val="10">
+				<figure class="card">
+					<img src="assets/10.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="240" data-top="509" data-val="11">
+				<figure class="card">
+					<img src="assets/11.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="360" data-top="509" data-val="12">
+				<figure class="card">
+					<img src="assets/12.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="480" data-top="509" data-val="13">
+				<figure class="card">
+					<img src="assets/13.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="600" data-top="509" data-val="14">
+				<figure class="card">
+					<img src="assets/14.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="720" data-top="509" data-val="15">
+				<figure class="card">
+					<img src="assets/15.png">
+				</figure>
+			</li>
+			<li class="card_box" data-left="840" data-top="509" data-val="16">
+				<figure class="card">
+					<img src="assets/16.png">
+				</figure>
+			</li>
+		</ul>
+	</div>
+</body>
+<style type="text/css">
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		user-select: none;
+		font-size: 0;
+		margin: 0;
+		background: url(assets/texture.png) center;
+		font-family: 'Ephesis', cursive;
+	}
+	body.solved {
+		pointer-events: none;
+	}
+	body.solved * {
+		pointer-events: none !important;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	figure {
+		margin: 0;
+	}
+
+	#wrapper {	
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	#list_cards {
+		width: 940px;
+		height: 656px;
+		position: relative;
+		counter-reset: digits;
+	}
+	#list_cards .card_container {
+		width: 100px;
+		height: 149px;
+		position: absolute;
+		border-radius: 15px;
+		background: #000;
+		opacity: 0.3;
+	}
+	body.solved #list_cards .card_container {
+		opacity: 0.5;
+	}
+	#list_cards .card_container:before {
+		content: attr(data-char);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		line-height: 149px;
+		font-size: 70px;
+		pointer-events: none;
+		color: #fff;
+	}
+	#list_cards .card_container:nth-child(1) {
+		top: 0;
+		left: 170px;
+	}
+	#list_cards .card_container:nth-child(2) {
+		top: 0;
+		left: 290px;
+	}
+	#list_cards .card_container:nth-child(3) {
+		top: 0;
+		left: 410px;
+	}
+	#list_cards .card_container:nth-child(4) {
+		top: 0;
+		left: 530px;
+	}
+	#list_cards .card_container:nth-child(5) {
+		top: 0;
+		left: 650px;
+	}
+	#list_cards .card_container:nth-child(6) {
+		top: 169px;
+		left: 170px;
+	}
+	#list_cards .card_container:nth-child(7) {
+		top: 169px;
+		left: 290px;
+	}
+	#list_cards .card_container:nth-child(8) {
+		top: 169px;
+		left: 410px;
+	}
+	#list_cards .card_container:nth-child(9) {
+		top: 169px;
+		left: 530px;
+	}
+	#list_cards .card_container:nth-child(10) {
+		top: 169px;
+		left: 650px;
+	}
+	#list_cards .card_box {
+		position: absolute;
+		z-index: 0;
+		cursor: grab;
+	}
+	#list_cards .card_box:active {
+		cursor: grabbing;
+	}
+	#list_cards .card_box.placed {
+		bottom: unset !important;
+	}
+	#list_cards .card_box:nth-child(11) {
+		bottom: 169px;
+		left: 0;
+	}
+	#list_cards .card_box:nth-child(12) {
+		bottom: 169px;
+		left: 120px;
+	}
+	#list_cards .card_box:nth-child(13) {
+		bottom: 169px;
+		left: 240px;
+	}
+	#list_cards .card_box:nth-child(14) {
+		bottom: 169px;
+		left: 360px;
+	}
+	#list_cards .card_box:nth-child(15) {
+		bottom: 169px;
+		left: 480px;
+	}
+	#list_cards .card_box:nth-child(16) {
+		bottom: 169px;
+		left: 600px;
+	}
+	#list_cards .card_box:nth-child(17) {
+		bottom: 169px;
+		left: 720px;
+	}
+	#list_cards .card_box:nth-child(18) {
+		bottom: 169px;
+		left: 840px;
+	}
+	#list_cards .card_box:nth-child(19) {
+		bottom: 0;
+		left: 0;
+	}
+	#list_cards .card_box:nth-child(20) {
+		bottom: 0;
+		left: 120px;
+	}
+	#list_cards .card_box:nth-child(21) {
+		bottom: 0;
+		left: 240px;
+	}
+	#list_cards .card_box:nth-child(22) {
+		bottom: 0;
+		left: 360px;
+	}
+	#list_cards .card_box:nth-child(23) {
+		bottom: 0;
+		left: 480px;
+	}
+	#list_cards .card_box:nth-child(24) {
+		bottom: 0;
+		left: 600px;
+	}
+	#list_cards .card_box:nth-child(25) {
+		bottom: 0;
+		left: 720px;
+	}
+	#list_cards .card_box:nth-child(26) {
+		bottom: 0;
+		left: 840px;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var soundSwap = new Audio('assets/swap.wav');
+
+	    $('.card_box').draggable({
+	        zIndex: 2,
+	        revert: false,
+	        revertDuration: 200,
+	        start: function(event, ui) {
+	            ui.helper.data('dropped', false);
+	            startPosition = $(this).position();
+	            $('.card_box').css({ 'z-index': 0 });
+	            $(this).css({ 'z-index': 1 });
+	        },
+	        stop: function(event, ui) {
+	            var draggable = $(this);
+	            if (!ui.helper.data('dropped')) {
+					soundSwap.pause();
+					soundSwap.currentTime = 0;
+					soundSwap.play();
+	                moveElem(draggable);
+	            } else {
+	                draggable.css({ 'z-index': 0 });
+	            }
+	        }
+	    });
+
+	    $('.card_container').droppable({
+	        accept: $('.card_box'),
+	        tolerance: "pointer",
+	        drop: function(event, ui) {
+	            ui.helper.data('dropped', true);
+				soundSwap.pause();
+				soundSwap.currentTime = 0;
+				soundSwap.play();
+	            var draggable = ui.draggable;
+	            var droppable = $(this);
+	            var dropPos = droppable.position();
+	            var dataPos = droppable.attr('data-pos');
+		        var elem = $('.card_box[data-pos=' + dataPos + ']');
+	            if (elem.length > 0
+	             && elem.attr('data-val') != draggable.attr('data-val')) {
+	             	if(draggable.hasClass('placed')) {
+	             		var dragPos = draggable.attr('data-pos');
+	             		var originPos = $('.card_container[data-pos=' + dragPos + ']').position();
+	             		console.log(originPos);
+			            elem.css({ 'z-index': 3, 'pointer-events': 'none' }).animate({
+			                left: originPos.left,
+			                top: originPos.top,
+			            }, 200).attr('data-pos', dragPos).addClass('placed');
+				        setTimeout(function() {
+				            elem.css({ 'pointer-events': 'all' });
+				        }, 200);
+	    	        }
+	    	        else {
+	             		console.log('ho');
+	    	            moveElem(elem);    	        	
+	    	        }
+	            }
+	            draggable.css({ 'z-index': 3, 'pointer-events': 'none' }).animate({
+	                left: dropPos.left,
+	                top: dropPos.top,
+	            }, 200).attr('data-pos', dataPos).addClass('placed');
+		        checkValues();
+	            setTimeout(function() {
+	                draggable.css({ 'pointer-events': 'all' });
+	                droppable.css({ 'pointer-events': 'all' });
+	            }, 200);
+	        }
+	    });
+
+	    function moveElem(elem) {
+	        elem.css({ 'z-index': 3, 'pointer-events': 'none' }).animate({
+	            left: elem.attr('data-left'),
+	            top: elem.attr('data-top'),
+	        }, 200).attr('data-pos', "").removeClass('placed');
+	        setTimeout(function() {
+	            elem.css({ 'pointer-events': 'all' });
+	        }, 200);
+	    }
+
+		function checkValues() {
+		    var checkValues = 0;
+		    $('.card_box.placed').each(function() {
+		        var elemValue = $(this).attr('data-val');
+		        var elemPosition = $(this).attr('data-pos');	        
+		        switch(elemValue) {
+		            case "04":
+		                if(elemPosition == "01") checkValues += 1;
+		                break;
+		            case "11":
+		                if(elemPosition == "02") checkValues += 1;
+		                break;
+		            case "01":
+		                if(elemPosition == "03") checkValues += 1;
+		                break;
+		            case "14":
+		                if(elemPosition == "04") checkValues += 1;
+		                break;
+		            case "15":
+		                if(elemPosition == "05") checkValues += 1;
+		                break;
+		            case "12":
+		                if(elemPosition == "06") checkValues += 1;
+		                break;
+		            case "08":
+		                if(elemPosition == "07") checkValues += 1;
+		                break;
+		            case "06":
+		                if(elemPosition == "08") checkValues += 1;
+		                break;
+		            case "02":
+		                if(elemPosition == "09") checkValues += 1;
+		                break;
+		            case "16":
+		                if(elemPosition == "10") checkValues += 1;
+		                break;
+		        }
+		        if(checkValues == 10) {
+			        setTimeout(function() {
+		    			$('body').addClass('solved');
+			        }, 200);
+			        setTimeout(function() {
+		        		solve();
+			        }, 1000);
+		        }
+		    });
+		}
+
+		function solve() {
+			var a = [116, 111, 114, 116, 105, 108, 108, 97, 114, 100];
+			for(let i = 1; i<=10; i++) {
+			    setTimeout(function() {
+					var zero = i < 10 ? '0' : '';
+					$('.card_container[data-pos=' + zero + i + ']').attr('data-char', String.fromCharCode(a.shift()));
+					soundSwap.pause();
+					soundSwap.currentTime = 0;
+					soundSwap.play();
+					moveElem($('.card_box[data-pos=' + zero + i + ']'));
+			    }, i * 150);
+			}
+		}
+	});
+</script>
