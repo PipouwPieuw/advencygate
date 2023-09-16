@@ -1,9 +1,9 @@
 <head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
@@ -14,24 +14,24 @@
 					<i class="webfont webfont-19"></i>
 				</span>
 			</li>
-			<li class="card_container" data-pos="01" data-char=""></li>
-			<li class="card_container" data-pos="02" data-char=""></li>
-			<li class="card_container" data-pos="03" data-char=""></li>
-			<li class="card_container" data-pos="04" data-char=""></li>
-			<li class="card_container" data-pos="05" data-char=""></li>
-			<li class="card_container" data-pos="06" data-char=""></li>
-			<li class="card_container" data-pos="07" data-char=""></li>
-			<li class="card_container" data-pos="08" data-char=""></li>
-			<li class="card_container" data-pos="09" data-char=""></li>
-			<li class="card_container" data-pos="10" data-char=""></li>
-			<li class="card_container" data-pos="11" data-char=""></li>
-			<li class="card_container" data-pos="12" data-char=""></li>
-			<li class="card_container" data-pos="13" data-char=""></li>
-			<li class="card_container" data-pos="14" data-char=""></li>
-			<li class="card_container" data-pos="15" data-char=""></li>
-			<li class="card_container" data-pos="16" data-char=""></li>
-			<li class="card_container" data-pos="17" data-char=""></li>
-			<li class="card_container" data-pos="18" data-char=""></li>
+			<li class="card_container" data-pos="01" data-char="?"></li>
+			<li class="card_container" data-pos="02" data-char="?"></li>
+			<li class="card_container" data-pos="03" data-char="?"></li>
+			<li class="card_container" data-pos="04" data-char="?"></li>
+			<li class="card_container" data-pos="05" data-char="?"></li>
+			<li class="card_container" data-pos="06" data-char="?"></li>
+			<li class="card_container" data-pos="07" data-char="?"></li>
+			<li class="card_container" data-pos="08" data-char="?"></li>
+			<li class="card_container" data-pos="09" data-char="?"></li>
+			<li class="card_container" data-pos="10" data-char="?"></li>
+			<li class="card_container" data-pos="11" data-char="?"></li>
+			<li class="card_container" data-pos="12" data-char="?"></li>
+			<li class="card_container" data-pos="13" data-char="?"></li>
+			<li class="card_container" data-pos="14" data-char="?"></li>
+			<li class="card_container" data-pos="15" data-char="?"></li>
+			<li class="card_container" data-pos="16" data-char="?"></li>
+			<li class="card_container" data-pos="17" data-char="?"></li>
+			<li class="card_container" data-pos="18" data-char="?"></li>
 			<li class="card_box" data-left="0" data-top="340" data-val="01">
 				<span class="card">
 					<i class="webfont webfont-01"></i>
@@ -232,7 +232,7 @@
 		font-size: 0;
 		margin: 0;
 		background: url(assets/texture.jpg) center;
-		font-family: 'Ephesis', cursive;
+		font-family: 'Ubuntu', sans-serif;
 	}
 	body.solved {
 		pointer-events: none;
@@ -582,7 +582,7 @@
 		}
 
 		function solve() {
-			var a = [116, 111, 114, 116, 105, 108, 108, 97, 114, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+			var a = [76, 65, 82, 69, 80, 79, 78, 83, 69, 69, 83, 84, 65, 65, 65, 65, 65, 65];
 			var amount = $('.card_container').length;
 			for(let i = 1; i<=amount; i++) {
 			    setTimeout(function() {
