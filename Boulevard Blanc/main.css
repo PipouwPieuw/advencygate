@@ -1,0 +1,160 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	user-select: none;
+	font-size: 0;
+	margin: 0;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+button {
+	-webkit-transition: all ease .2s;
+    -moz-transition: all ease .2s;
+    -ms-transition: all ease .2s;
+    transition: all ease .2s;
+    cursor: pointer;
+}
+
+#wrapper {	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	max-width: 600px;
+	margin: auto;
+	padding-bottom: 75px;
+}
+#wrapper:not(.game_started) .track_display__wrapper,
+#wrapper:not(.game_started) .list_answers,
+#wrapper.game_started .start_game,
+#wrapper.game_ended .start_game,
+#wrapper:not(.game_ended) .end_game {
+	display: none;
+}
+
+.audio_player {
+	display: none;
+}
+
+.start_game,
+.end_game {
+	border: 4px solid black;
+	background: white;
+	height: 75px;
+	display: flex;
+	align-items: center;
+	padding: 0 15px;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 28px;
+}
+.start_game:hover {
+	background: black;
+	color: white;
+}
+
+.track_display__wrapper {
+	width: 100%;
+	padding: 5px;
+}
+.track_display {
+	width: 100%;
+	display: flex;
+	border: 4px solid black;
+}
+.track_display__half {
+	flex: 0 0 50%;
+	width: 50%;
+}
+.track_display__cover {
+	max-width: 100%;
+	height: auto;
+	padding-right: 7px;
+}
+.track_display__details {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 15px;
+}
+.track_display__name {
+	font-size: 28px;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+.track_display__artist {
+	font-size: 16px;
+	color: darkgray;
+}
+
+.list_answers {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 0 -5px;
+}
+.list_answers:not(.playing) {
+	pointer-events: none;
+}
+.list_answers__item {
+	flex: 0 0 50%;
+	padding: 5px;
+}
+.list_answers__name {
+	border: 4px solid black;
+	height: 75px;
+	font-family: inherit;
+	font-size: 28px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: block;
+	width: 100%;
+	background: none;
+}
+.list_answers__name:hover {
+	color: white;
+	background: black;
+}
+.list_answers__name.correct {
+	background: green;
+	border-color: green;
+	color: white;
+}
+.list_answers__name.incorrect {
+	background: red;
+	border-color: red;
+	color: white;
+}
+
+.score_wrapper {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 75px;
+	border-top: 4px solid black;
+	padding: 0 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 40px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.score_display {
+	margin-left: 10px;
+}
