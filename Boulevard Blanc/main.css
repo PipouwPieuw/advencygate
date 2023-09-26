@@ -32,6 +32,14 @@ button {
 	max-width: 600px;
 	margin: auto;
 	padding-bottom: 75px;
+	-webkit-transition: all ease .4s;
+    -moz-transition: all ease .4s;
+    -ms-transition: all ease .4s;
+    transition: all ease .4s;
+}
+#wrapper:not(.initialized) {
+	opacity: 0;
+	pointer-events: none;
 }
 #wrapper:not(.game_started) .track_display__wrapper,
 #wrapper:not(.game_started) .list_answers,
@@ -79,6 +87,12 @@ button {
 	max-width: 100%;
 	height: auto;
 	padding-right: 7px;
+	height: 284px;
+}
+.track_display__cover img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 .track_display__details {
 	display: flex;

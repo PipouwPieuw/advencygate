@@ -80,7 +80,8 @@ const APPController = (function(UICtrl, APICtrl) {
     var isPlaying = false;
     var answers = [];
     var score = 0;
-    var audioPlayer = $('.js-audio-player');
+    var audioPlayer = document.getElementById("audio_player");
+    var jsAudioPlayer = $('.js-audio-player');
     var soundRight = new Audio('assets/right.m4a');
     var soundWrong = new Audio('assets/wrong.m4a');
 
@@ -89,9 +90,22 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Pierre", [0, 1, 2, 3, 4]],
         ["Gautier", [5, 6, 7, 8, 9]],
         ["Nadège", [10, 11, 12, 13, 14]],
-        /*["Anthony", [15, 16, 17, 18, 19]],
-        ["Jérôme", [20, 21, 22, 23, 24]]*/
+        ["Émilie", [15, 16, 17, 18, 19]],
+        ["Tariq", [20, 21, 22, 23, 24]],
+        ["Marie", [25, 26, 27, 28, 29]],
+        ["Bruno", [30, 31, 32, 33, 34]],
+        ["Jérôme", [10, 35, 36, 37, 38]],
+        ["Alison", [39, 40, 41, 42, 43]],
+        ["Tony", [10, 44, 45, 46, 47]]
     ];
+    // Shuffle players tracks index
+    for(player in playersData) {
+        playersData[player][1] = shuffleArray(playersData[player][1]);
+    }
+    // Shuffle players
+    playersData = shuffleArray(playersData);
+    /*console.log(playersData);*/
+
     var playersAmount = playersData.length;
     var playerIndexes = [...Array(playersAmount+1).keys()];
     playerIndexes.pop();
@@ -101,12 +115,27 @@ const APPController = (function(UICtrl, APICtrl) {
 
     // Build setlist from players traks
     var setList = [];
+    var tracksIndexes = [];
+    var tracksByPlayer = 2;
     for(player in playersData) {
-        randIndex = Math.floor(Math.random() * tracksByPlayer);
-        var data = [playersData[player][0], playersData[player][1][randIndex]]
-        setList.push(data);
+        // ALL TRACKS
+        /*for(track in playersData[player][1])
+            setList.push([playersData[player][0], playersData[player][1][track]]);*/
+        // TWO TRACKS BY PLAYER
+        for(let i=0; i<tracksByPlayer; i++) {
+            var index = i;
+            var playerName = playersData[player][0];
+            var trackIndex = playersData[player][1][index];
+            // Check if track is already in array (avoid having same track more than 1 time in case of track chosen by multiple players)
+            if(tracksIndexes.includes(trackIndex))
+                trackIndex = playersData[player][1][index+1];
+            tracksIndexes.push(trackIndex);
+            var data = [playerName, trackIndex];
+            setList.push(data);
+        }
     }
     /*console.log(setList);*/
+    setList = shuffleArray(setList);
 
     // get genres on page load
     const loadPlaylist = async () => {
@@ -123,6 +152,8 @@ const APPController = (function(UICtrl, APICtrl) {
             console.log(track.track.id);
             console.log('----------');
         }*/
+        $('#wrapper').addClass('initialized');
+        /*console.log(tracks);*/
         totalTracks = tracks.total;
     }
 
@@ -144,7 +175,7 @@ const APPController = (function(UICtrl, APICtrl) {
         index = index < 10 ? "00" + index : index < 100 ? "0" + index : index;
         // Track preview
         var trackPreview = "assets/previews/" + index + ".mp3";        
-        audioPlayer.attr('src', trackPreview);
+        jsAudioPlayer.attr('src', trackPreview);
         // Track image
         var image = tracks.items[index0].track.album.images[1].url;
         $('.js-cover').attr('src', image);
@@ -167,8 +198,9 @@ const APPController = (function(UICtrl, APICtrl) {
         var counter = 0;
         while(answers.length < 4 && counter <= playersAmount) {
             var currentName = playersData[playerIndexes[counter]][0];
-            if(currentName != currentData[0]) {
-                answers.push([currentName, false]);                  
+            // Avoid to display other players that also chose current song to avoid confusion
+            if(currentName != currentData[0] && !playersData[playerIndexes[counter]][1].includes (index0)) {
+                answers.push([currentName, false]);
             }
             counter += 1;
         }
@@ -179,21 +211,22 @@ const APPController = (function(UICtrl, APICtrl) {
             $(this).text(answers[index][0]);
         });
         // Play track
-        audioPlayer[0].play();
+        audioPlayer.play();
         isPlaying = true;        
         $('.js-answers').addClass('playing');
     }
 
     jQuery('.js-answer').on('click', function() {
+        var that = $(this);
         if(!isPlaying)
             return;
         isPlaying = false;
-        audioPlayer[0].pause();
+        audioPlayer.pause();
         $('.js-answers').removeClass('playing');
-        var answerIndex = $(this).attr('data-index');
+        var answerIndex = that.attr('data-index');
         var result = answers[answerIndex][1];
         if(result) {
-           $(this).addClass('correct');
+           that.addClass('correct');
             soundRight.pause();
             soundRight.currentTime = 0;
             soundRight.play();
@@ -204,7 +237,7 @@ const APPController = (function(UICtrl, APICtrl) {
             soundWrong.pause();
             soundWrong.currentTime = 0;
             soundWrong.play();
-           $(this).addClass('incorrect');
+           that.addClass('incorrect');
         }
         setTimeout(function() {
             if(setList.length > 0)
@@ -213,6 +246,11 @@ const APPController = (function(UICtrl, APICtrl) {
                 endGame();
         }, 1000);
 
+    });
+
+    jsAudioPlayer.on('timeupdate', function(event) {
+        if(isPlaying)
+          audioPlayer.play();
     });
 
     function endGame() {
