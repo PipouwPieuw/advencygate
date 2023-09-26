@@ -96,7 +96,10 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Bruno", [30, 31, 32, 33, 34]],
         ["Jérôme", [10, 35, 36, 37, 38]],
         ["Alison", [39, 40, 41, 42, 43]],
-        ["Tony", [10, 44, 45, 46, 47]]
+        ["Tony", [10, 44, 45, 46, 47]],
+        ["JB", [48, 49, 50, 51, 52]],
+        ["Cédric R.", [53, 54, 55, 56, 57]],
+        ["Timothée", [58, 59, 60, 61, 62]]
     ];
     // Shuffle players tracks index
     for(player in playersData) {
@@ -119,10 +122,10 @@ const APPController = (function(UICtrl, APICtrl) {
     var tracksByPlayer = 2;
     for(player in playersData) {
         // ALL TRACKS
-        /*for(track in playersData[player][1])
-            setList.push([playersData[player][0], playersData[player][1][track]]);*/
+        for(track in playersData[player][1])
+            setList.push([playersData[player][0], playersData[player][1][track]]);
         // TWO TRACKS BY PLAYER
-        for(let i=0; i<tracksByPlayer; i++) {
+        /*for(let i=0; i<tracksByPlayer; i++) {
             var index = i;
             var playerName = playersData[player][0];
             var trackIndex = playersData[player][1][index];
@@ -132,7 +135,7 @@ const APPController = (function(UICtrl, APICtrl) {
             tracksIndexes.push(trackIndex);
             var data = [playerName, trackIndex];
             setList.push(data);
-        }
+        }*/
     }
     /*console.log(setList);*/
     setList = shuffleArray(setList);
@@ -196,7 +199,7 @@ const APPController = (function(UICtrl, APICtrl) {
         playerIndexes = shuffleArray(playerIndexes);
         // Set false answers
         var counter = 0;
-        while(answers.length < 4 && counter <= playersAmount) {
+        while(answers.length < 4 && counter < playersAmount) {
             var currentName = playersData[playerIndexes[counter]][0];
             // Avoid to display other players that also chose current song to avoid confusion
             if(currentName != currentData[0] && !playersData[playerIndexes[counter]][1].includes (index0)) {
