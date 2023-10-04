@@ -74,6 +74,8 @@ const UIController = (function() {
 })();
 
 const APPController = (function(UICtrl, APICtrl) {
+    const SHUFFLE = true;
+    const DEVMODE = true;
     var tracks = {};
     var totalTracks = 0;
     var tracksByPlayer = 5;
@@ -99,15 +101,18 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Tony", [10, 44, 45, 46, 47]],
         ["JB", [48, 49, 50, 51, 52]],
         ["Cédric R.", [53, 54, 55, 56, 57]],
-        ["Timothée", [58, 59, 60, 61, 62]]
+        ["Timothée", [58, 59, 60, 61, 62]],
+        ["Olivier", [63, 64, 65, 66, 67]]
     ];
-    // Shuffle players tracks index
-    for(player in playersData) {
-        playersData[player][1] = shuffleArray(playersData[player][1]);
+    if(SHUFFLE) {
+        // Shuffle players tracks index
+        for(player in playersData) {
+            playersData[player][1] = shuffleArray(playersData[player][1]);
+        }
+        // Shuffle players
+        playersData = shuffleArray(playersData);
+        /*console.log(playersData);*/
     }
-    // Shuffle players
-    playersData = shuffleArray(playersData);
-    /*console.log(playersData);*/
 
     var playersAmount = playersData.length;
     var playerIndexes = [...Array(playersAmount+1).keys()];
@@ -121,33 +126,39 @@ const APPController = (function(UICtrl, APICtrl) {
     var tracksIndexes = [];
     var tracksByPlayer = 2;
     for(player in playersData) {
-        // ALL TRACKS
-        for(track in playersData[player][1])
-            setList.push([playersData[player][0], playersData[player][1][track]]);
-        // TWO TRACKS BY PLAYER
-        /*for(let i=0; i<tracksByPlayer; i++) {
-            var index = i;
-            var playerName = playersData[player][0];
-            var trackIndex = playersData[player][1][index];
-            // Check if track is already in array (avoid having same track more than 1 time in case of track chosen by multiple players)
-            if(tracksIndexes.includes(trackIndex))
-                trackIndex = playersData[player][1][index+1];
-            tracksIndexes.push(trackIndex);
-            var data = [playerName, trackIndex];
-            setList.push(data);
-        }*/
+        if(DEVMODE) {
+            // ALL TRACKS
+            for(track in playersData[player][1])
+                setList.push([playersData[player][0], playersData[player][1][track]]);
+        }
+        else {
+            // TWO TRACKS BY PLAYER
+            for(let i=0; i<tracksByPlayer; i++) {
+                var index = i;
+                var playerName = playersData[player][0];
+                var trackIndex = playersData[player][1][index];
+                // Check if track is already in array (avoid having same track more than 1 time in case of track chosen by multiple players)
+                if(tracksIndexes.includes(trackIndex))
+                    trackIndex = playersData[player][1][index+1];
+                tracksIndexes.push(trackIndex);
+                var data = [playerName, trackIndex];
+                setList.push(data);
+            }
+        }
     }
     /*console.log(setList);*/
-    setList = shuffleArray(setList);
+    if(SHUFFLE) {
+        setList = shuffleArray(setList);
+    }
 
-    // get genres on page load
+    // get playlist on page load
     const loadPlaylist = async () => {
 
         //get the token
         const token = await APICtrl.getToken();           
         //store the token onto the page
         UICtrl.storeToken(token);
-        //get the genres
+        //get playlist
         tracks = await APICtrl.getPlaylist(token);
         /*for(track of tracks.items) {
             console.log(tracks.items.indexOf(track) + 1);
@@ -201,7 +212,7 @@ const APPController = (function(UICtrl, APICtrl) {
         var counter = 0;
         while(answers.length < 4 && counter < playersAmount) {
             var currentName = playersData[playerIndexes[counter]][0];
-            // Avoid to display other players that also chose current song to avoid confusion
+            // Don't display other players that also chose current song to avoid confusion
             if(currentName != currentData[0] && !playersData[playerIndexes[counter]][1].includes (index0)) {
                 answers.push([currentName, false]);
             }
@@ -284,5 +295,4 @@ const APPController = (function(UICtrl, APICtrl) {
 
 })(UIController, APIController);
 
-// will need to call a method to load the genres on page load
 APPController.init();
