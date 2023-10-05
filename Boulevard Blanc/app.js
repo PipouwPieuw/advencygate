@@ -102,7 +102,8 @@ const APPController = (function(UICtrl, APICtrl) {
         ["JB", [48, 49, 50, 51, 52]],
         ["Cédric R.", [53, 54, 55, 56, 57]],
         ["Timothée", [58, 59, 60, 61, 62]],
-        ["Olivier", [63, 64, 65, 66, 67]]
+        ["Olivier", [63, 64, 65, 66, 67]],
+        ["Cédric M", [68, 69, 70, 71, 72]]
     ];
     if(SHUFFLE) {
         // Shuffle players tracks index
@@ -160,12 +161,14 @@ const APPController = (function(UICtrl, APICtrl) {
         UICtrl.storeToken(token);
         //get playlist
         tracks = await APICtrl.getPlaylist(token);
-        /*for(track of tracks.items) {
-            console.log(tracks.items.indexOf(track) + 1);
-            console.log(track.track.preview_url);
-            console.log(track.track.id);
-            console.log('----------');
-        }*/
+        if(DEVMODE) {
+	        for(track of tracks.items) {
+	            console.log(tracks.items.indexOf(track) + 1);
+	            console.log(track.track.preview_url);
+	            console.log(track.track.id);
+	            console.log('----------');
+	        }
+	    }
         $('#wrapper').addClass('initialized');
         /*console.log(tracks);*/
         totalTracks = tracks.total;
