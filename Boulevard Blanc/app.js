@@ -74,7 +74,7 @@ const UIController = (function() {
 })();
 
 const APPController = (function(UICtrl, APICtrl) {
-    const SHUFFLE = true;
+    const SHUFFLE = false;
     const DEVMODE = true;
     var tracks = {};
     var totalTracks = 0;
@@ -103,7 +103,8 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Cédric R.", [53, 54, 55, 56, 57]],
         ["Timothée", [58, 59, 60, 61, 62]],
         ["Olivier", [63, 64, 65, 66, 67]],
-        ["Cédric M", [68, 69, 70, 71, 72]]
+        ["Cédric M", [68, 69, 70, 71, 72]],
+        ["Guillaume", [73, 74, 75, 76, 77]],
     ];
     if(SHUFFLE) {
         // Shuffle players tracks index
