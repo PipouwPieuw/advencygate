@@ -1,3 +1,6 @@
+:root {
+	--radius: 8px;
+}
 * {
 	box-sizing: border-box;
 }
@@ -29,9 +32,9 @@ button {
 	justify-content: center;
 	flex-direction: column;
 	height: 100vh;
-	max-width: 600px;
+	max-width: 610px;
 	margin: auto;
-	padding-bottom: 75px;
+	padding: 10px 10px 75px 10px;
 	-webkit-transition: all ease .4s;
     -moz-transition: all ease .4s;
     -ms-transition: all ease .4s;
@@ -64,30 +67,67 @@ button {
 	text-transform: uppercase;
 	font-weight: 700;
 	font-size: 28px;
+	border-radius: var(--radius);
 }
-.start_game:hover {
-	background: black;
-	color: white;
+@media only screen and (max-width: 640px) {
+	.start_game,
+	.end_game {
+		font-size: 22px;
+	}
 }
-
+@media only screen and (min-width: 641px) {
+	.start_game:hover {
+		background: black;
+		color: white;
+	}
+}
+.game_display {
+	overflow: auto;
+	padding-bottom: 10px;
+}
 .track_display__wrapper {
 	width: 100%;
 	padding: 5px;
+}
+@media only screen and (max-width: 640px) {
+	.track_display__wrapper {
+		padding: 10px 5px;
+	}
 }
 .track_display {
 	width: 100%;
 	display: flex;
 	border: 4px solid black;
+	border-radius: var(--radius);
+}
+@media only screen and (max-width: 640px) {
+	.track_display {
+		flex-wrap: wrap;
+	}
 }
 .track_display__half {
 	flex: 0 0 50%;
 	width: 50%;
 }
+@media only screen and (max-width: 640px) {
+	.track_display__half--cover {
+		flex: 0 0 100px;
+		width: 100px;
+	}
+	.track_display__half--details {
+		flex: 0 0 calc(100% - 100px);
+		width: calc(100% - 100px);
+	}
+}
 .track_display__cover {
 	max-width: 100%;
 	height: auto;
 	padding-right: 7px;
-	height: 284px;
+}
+@media only screen and (min-width: 641px) {
+	.track_display__cover {
+		height: 284px;
+	}
 }
 .track_display__cover img {
 	width: 100%;
@@ -100,21 +140,44 @@ button {
 	justify-content: center;
 	padding: 15px;
 }
+@media only screen and (max-width: 640px) {	
+	.track_display__details {
+		padding: 5px;
+	}
+}
 .track_display__name {
 	font-size: 28px;
 	font-weight: 700;
 	margin-bottom: 5px;
 }
+@media only screen and (max-width: 640px) {	
+	.track_display__name {
+		font-size: 18px;
+		line-height: 20px;
+		display: -webkit-box;
+	    -webkit-line-clamp: 3;
+	    -webkit-box-orient: vertical;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	}
+}
 .track_display__artist {
 	font-size: 16px;
 	color: darkgray;
+}
+@media only screen and (max-width: 640px) {	
+	.track_display__artist {
+		font-size: 12px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 .list_answers {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	margin: 0 -5px;
 }
 .list_answers:not(.playing) {
 	pointer-events: none;
@@ -122,6 +185,12 @@ button {
 .list_answers__item {
 	flex: 0 0 50%;
 	padding: 5px;
+}
+@media only screen and (max-width: 640px) {
+	.list_answers__item {
+		flex: 0 0 100%;
+		padding: 10px 5px;
+	}
 }
 .list_answers__name {
 	border: 4px solid black;
@@ -137,10 +206,18 @@ button {
 	display: block;
 	width: 100%;
 	background: none;
+	border-radius: var(--radius);
 }
-.list_answers__name:hover {
-	color: white;
-	background: black;
+@media only screen and (min-width: 641px) {
+	.list_answers__name:hover {
+		color: white;
+		background: black;
+	}
+}
+@media only screen and (max-width: 640px) {	
+	.list_answers__name {
+		font-size: 24px;
+	}
 }
 .list_answers__name.correct {
 	background: green;
@@ -167,6 +244,7 @@ button {
 	font-size: 40px;
 	text-transform: uppercase;
 	font-weight: 700;
+	background: white;
 }
 
 .score_display {

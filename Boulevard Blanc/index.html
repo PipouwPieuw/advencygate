@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">    
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     
@@ -21,35 +21,37 @@
         <span class="score_wrapper">
             Score :<span class="score_display js-score"></span>
         </span>
-        <div class="track_display__wrapper">
-            <div class="track_display">
-                <div class="track_display__half">
-                    <img class="track_display__cover js-cover" src=""/>
-                </div>
-                <div class="track_display__details track_display__half">
-                   <div class="track_display__name js-name"></div>
-                    <div class="track_display__artist js-artist"></div>
+        <div class="game_display">
+            <div class="track_display__wrapper">
+                <div class="track_display">
+                    <div class="track_display__half track_display__half--cover">
+                        <img class="track_display__cover js-cover" src=""/>
+                    </div>
+                    <div class="track_display__details track_display__half track_display__half--details">
+                       <div class="track_display__name js-name"></div>
+                        <div class="track_display__artist js-artist"></div>
+                    </div>
                 </div>
             </div>
+            <ul class="list_answers js-answers">
+                <li class="list_answers__item">
+                    <button class="list_answers__name js-answer" data-index="0"></button>
+                </li>
+                <li class="list_answers__item">
+                    <button class="list_answers__name js-answer" data-index="1"></button>
+                </li>
+                <li class="list_answers__item">
+                    <button class="list_answers__name js-answer" data-index="2"></button>
+                </li>
+                <li class="list_answers__item">
+                    <button class="list_answers__name js-answer" data-index="3"></button>
+                </li>
+            </ul>
         </div>
-        <ul class="list_answers js-answers">
-            <li class="list_answers__item">
-                <button class="list_answers__name js-answer" data-index="0"></button>
-            </li>
-            <li class="list_answers__item">
-                <button class="list_answers__name js-answer" data-index="1"></button>
-            </li>
-            <li class="list_answers__item">
-                <button class="list_answers__name js-answer" data-index="2"></button>
-            </li>
-            <li class="list_answers__item">
-                <button class="list_answers__name js-answer" data-index="3"></button>
-            </li>
-        </ul>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="app.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 </html>
