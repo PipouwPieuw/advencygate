@@ -1,8 +1,10 @@
 
 $(document).ready(function() {
 	var activeItem = "";
-	$('.js-timeline-item').click(function() {
-		var elem = $(this);
+	$(document).on('click', function(e) {
+		if(!$(e.target).closest('.js-timeline-item').length > 0)
+			return;
+		var elem = $(e.target).closest('.js-timeline-item');
 		activeItem = elem;
 		var overlay = $('.js-overlay');
 		var overlayImg = $('.js-overlay-image');
@@ -14,24 +16,29 @@ $(document).ready(function() {
 		overlayDesc.text(imgDesc);
 		overlay.addClass('active');
 	});
-	$('.js-overlay').click(function() {
+	$('.js-overlay').on('click', function() {
 		$(this).removeClass('active');
 		activeItem = "";
 	});
-	$('.js-icon-picker').click(function() {
+	$('.js-modal-close').on('click', function() {
+		$('.js-modal-overlay').removeClass('active');
+		$('body').addClass('solved');
+		showAll();
+	});
+	$('.js-icon-picker').on('click', function() {
 		$('.js-timeline-icon.active').removeClass('active');
 		$(this).removeClass('active');
 	});
-	$('.js-timeline-icon').click(function() {
+	$('.js-timeline-icon').on('click', function() {
 		$(this).addClass('active');
 		$('.js-icon-picker').addClass('active');
 	});
-	$('.js-icon-trigger').click(function() {
+	$('.js-icon-trigger').on('click', function() {
 		var icon = $(this).attr('data-icon');
 		$('.js-timeline-icon.active').attr('data-icon', icon);
 		checkAnswers();
 	});
-	$('.js-overlay-button').click(function(e) {
+	$('.js-overlay-button').on('click', function(e) {
 		e.stopPropagation();
 		var dir = $(this).attr('data-btn');
 		var nextItem = "";
@@ -79,7 +86,8 @@ $(document).ready(function() {
 			str += $(this).attr('data-icon');
 		});
 		if(str == v) {
-			showAll();
+			$('.js-modal-text').text(String.fromCharCode(76, 97, 32, 114, 195, 169, 112, 111, 110, 115, 101));
+			$('.js-modal-overlay').addClass('active');
 		}
 	}
 	function showAll() {

@@ -10,12 +10,6 @@ body {
 	background: black;
 	color: yellow;
 }
-body.solved {
-	pointer-events: none;
-}
-body.solved * {
-	pointer-events: none !important;
-}
 
 ul {
 	list-style: none;
@@ -172,7 +166,8 @@ ul {
 	right: calc(100% + 5px);
 }
 .overlay,
-.icon_picker {
+.icon_picker,
+.modal_overlay {
 	position: fixed;
 	z-index: 2;
 	top: 0;
@@ -189,7 +184,8 @@ ul {
     max-height: 100vh;
 }
 .overlay.active,
-.icon_picker.active {
+.icon_picker.active,
+.modal_overlay.active {
 	opacity: 1;
 	pointer-events: all;
 }
@@ -265,11 +261,62 @@ ul {
 		flex: 0 0 calc(100% / 3);
 	}
 }
+.modal_overlay {
+	cursor: default;
+}
+.modal_overlay__inner {
+	background: yellow;
+	border-radius: 16px;
+	padding: 50px 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	top: 0;
+}
+.modal_overlay:not(.active) .modal_overlay__inner {
+	top: -20px;
+}
+.modal_overlay__text {
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: .5px;
+	color: black;
+	margin: 0;
+}
+.modal_overlay__close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border: 0;
+	background: yellow;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	font-size: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+@media only screen and (min-width: 641px) {
+	.modal_overlay__close:hover {
+		background: black;
+		color: yellow;
+	}
+}
+body:not(.solved) .overlay__button {
+	display: none;
+}
 .overlay,
+.modal_overlay,
+.modal_overlay__inner,
 .list_timeline__image,
 .icon_picker,
 .icon_picker__icon,
-.overlay__button {
+.overlay__button,
+.modal_overlay__close {
 	-webkit-transition: all ease 0.3s;
     -moz-transition: all ease 0.3s;
     -ms-transition: all ease 0.3s;
