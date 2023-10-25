@@ -1,0 +1,109 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	user-select: none;
+	font-size: 0;
+	margin: 0;
+	background: black;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: monospace;
+    font-weight: 700;
+}
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 400px;
+	margin: auto;
+	min-height: 100vh;
+	position: relative;
+}
+.list_levels {
+	display: flex;
+	flex: 1;
+	margin: auto;
+}
+.list_levels__item {
+
+}
+.list_levels__bg {
+	height: 100%;
+	width: 160px;
+	flex: 0 0 160px;
+	font-size: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+	text-decoration: none;
+    font-size: 40px;
+    word-break: break-all;
+    gap: 20px;	
+}
+.list_levels__bg--green {
+	background: #00cf76;
+}
+.list_levels__bg--blue {
+	background: blue;
+}
+.list_levels__bg--red {
+	background: red;
+}
+.list_levels__bg--yellow {
+	background: yellow;
+	color: black;
+}
+.list_levels__bg--white {
+	background: white;
+	color: black;
+}
+.list_levels__bg:not(:hover) {
+	width: 80px;
+	flex: 0 0 80px;
+}
+.list_levels:hover .list_levels__bg:not(:hover) {
+	width: 60px;
+	flex: 0 0 60px;
+}
+.list_levels__title {
+    width: 40px;
+}
+.list_levels__bg:not(:hover) .list_levels__title {
+    opacity: 0;
+}
+.bottom_link {
+	background: purple;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	width: 100%;
+	color: white;
+	font-size: 40px;
+	height: 160px;
+}
+.bottom_link:not(:hover) {
+	height: 80px;
+}
+.bottom_link:not(:hover) .bottom_link__text {
+	opacity: 0;
+}
+.list_levels__bg,
+.list_levels__title,
+.bottom_link,
+.bottom_link__text {
+	-webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
