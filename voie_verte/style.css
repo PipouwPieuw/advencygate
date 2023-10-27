@@ -1,0 +1,356 @@
+* {
+	box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "webfont";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url("assets/fonticon/webfont.eot");
+  src: url("assets/fonticon/webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonticon/webfont.woff2") format("woff2"), url("assets/fonticon/webfont.woff") format("woff"), url("assets/fonticon/webfont.ttf") format("truetype"), url("assets/fonticon/webfont.svg#webfont") format("svg");
+}
+
+.webfont {
+  display: inline-block;
+  font-family: "webfont";
+  font-weight: 400;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.webfont-01::before {
+    content: "\ea01";
+}
+
+.webfont-02::before {
+    content: "\ea02";
+}
+
+.webfont-03::before {
+    content: "\ea03";
+}
+
+.webfont-04::before {
+    content: "\ea04";
+}
+
+.webfont-05::before {
+    content: "\ea05";
+}
+
+.webfont-06::before {
+    content: "\ea06";
+}
+
+.webfont-07::before {
+    content: "\ea07";
+}
+
+.webfont-08::before {
+    content: "\ea08";
+}
+
+.webfont-09::before {
+    content: "\ea09";
+}
+
+.webfont-10::before {
+    content: "\ea0a";
+}
+
+.webfont-11::before {
+    content: "\ea0b";
+}
+
+.webfont-12::before {
+    content: "\ea0c";
+}
+
+.webfont-13::before {
+    content: "\ea0d";
+}
+
+.webfont-14::before {
+    content: "\ea0e";
+}
+
+.webfont-15::before {
+    content: "\ea0f";
+}
+
+.webfont-16::before {
+    content: "\ea10";
+}
+
+.webfont-17::before {
+    content: "\ea11";
+}
+
+.webfont-18::before {
+    content: "\ea12";
+}
+
+.webfont-19::before {
+    content: "\ea13";
+}
+
+body {
+	user-select: none;
+	font-size: 0;
+	margin: 0;
+	background: #00cf76;
+	font-family: 'Ubuntu', sans-serif;
+}
+body.solved {
+	pointer-events: none;
+}
+body.solved * {
+	pointer-events: none !important;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+figure {
+	margin: 0;
+}
+
+#wrapper {	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 100vh;
+	min-width: 1060px;
+	margin-left: 120px;
+}
+
+#list_cards {
+	width: 1060px;
+	height: 656px;
+	position: relative;
+	counter-reset: digits;
+}
+#list_cards .card_container {
+	width: 100px;
+	height: 149px;
+	position: absolute;
+	border-radius: 15px;
+	background: #000;
+	opacity: 0.3;
+}
+body.solved #list_cards .card_container {
+	opacity: 0.5;
+}
+#list_cards .card_container:before {
+	content: attr(data-char);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	line-height: 149px;
+	font-size: 70px;
+	pointer-events: none;
+	color: #fff;
+}
+#list_cards .card_container:after {
+	content: "";
+	position: absolute;
+	width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9.5px 0 9.5px 10px;
+    border-color: transparent transparent transparent #000000;
+    left: -15px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+#list_cards .card_box:nth-child(1) {
+	top: 0;
+	left: -120px;
+}
+#list_cards .card_container:nth-child(2) {
+	top: 0;
+	left: 0;
+}
+#list_cards .card_container:nth-child(3) {
+	top: 0;
+	left: 120px;
+}
+#list_cards .card_container:nth-child(4) {
+	top: 0;
+	left: 240px;
+}
+#list_cards .card_container:nth-child(5) {
+	top: 0;
+	left: 360px;
+}
+#list_cards .card_container:nth-child(6) {
+	top: 0;
+	left: 480px;
+}
+#list_cards .card_container:nth-child(7) {
+	top: 0;
+	left: 600px;
+}
+#list_cards .card_container:nth-child(8) {
+	top: 0;
+	left: 720px;
+}
+#list_cards .card_container:nth-child(9) {
+	top: 0;
+	left: 840px;
+}
+#list_cards .card_container:nth-child(10) {
+	top: 0;
+	left: 960px;
+}
+#list_cards .card_container:nth-child(11) {
+	top: 169px;
+	left: 0;
+}
+#list_cards .card_container:nth-child(12) {
+	top: 169px;
+	left: 120px;
+}
+#list_cards .card_container:nth-child(13) {
+	top: 169px;
+	left: 240px;
+}
+#list_cards .card_container:nth-child(14) {
+	top: 169px;
+	left: 360px;
+}
+#list_cards .card_container:nth-child(15) {
+	top: 169px;
+	left: 480px;
+}
+#list_cards .card_container:nth-child(16) {
+	top: 169px;
+	left: 600px;
+}
+#list_cards .card_container:nth-child(17) {
+	top: 169px;
+	left: 720px;
+}
+#list_cards .card_container:nth-child(18) {
+	top: 169px;
+	left: 840px;
+}
+#list_cards .card_container:nth-child(19) {
+	top: 169px;
+	left: 960px;
+}
+#list_cards .card_box {
+	position: absolute;
+	z-index: 0;
+	cursor: grab;
+}
+#list_cards .card_box:active {
+	cursor: grabbing;
+}
+#list_cards .card_box.placed {
+	bottom: unset !important;
+}
+#list_cards .card_box:nth-child(20) {
+	bottom: 169px;
+	left: 0;
+}
+#list_cards .card_box:nth-child(21) {
+	bottom: 169px;
+	left: 120px;
+}
+#list_cards .card_box:nth-child(22) {
+	bottom: 169px;
+	left: 240px;
+}
+#list_cards .card_box:nth-child(23) {
+	bottom: 169px;
+	left: 360px;
+}
+#list_cards .card_box:nth-child(24) {
+	bottom: 169px;
+	left: 480px;
+}
+#list_cards .card_box:nth-child(25) {
+	bottom: 169px;
+	left: 600px;
+}
+#list_cards .card_box:nth-child(26) {
+	bottom: 169px;
+	left: 720px;
+}
+#list_cards .card_box:nth-child(27) {
+	bottom: 169px;
+	left: 840px;
+}
+#list_cards .card_box:nth-child(28) {
+	bottom: 169;
+	left: 960;
+}
+#list_cards .card_box:nth-child(29) {
+	bottom: 0;
+	left: 0px;
+}
+#list_cards .card_box:nth-child(30) {
+	bottom: 0;
+	left: 120px;
+}
+#list_cards .card_box:nth-child(31) {
+	bottom: 0;
+	left: 240px;
+}
+#list_cards .card_box:nth-child(32) {
+	bottom: 0;
+	left: 360px;
+}
+#list_cards .card_box:nth-child(33) {
+	bottom: 0;
+	left: 480px;
+}
+#list_cards .card_box:nth-child(34) {
+	bottom: 0;
+	left: 600px;
+}
+#list_cards .card_box:nth-child(35) {
+	bottom: 0;
+	left: 720px;
+}
+#list_cards .card_box:nth-child(36) {
+	bottom: 0;
+	left: 840px;
+}
+#list_cards .card_box:nth-child(37) {
+	bottom: 0;
+	left: 960px;
+}
+#list_cards .card {
+	border: 4px solid #4d4558;
+	border-radius: 15px;
+	background: #ffffff;
+	display: flex;
+	width: 100px;
+	height: 149px;
+	font-size: 75px;
+	align-items: center;
+	justify-content: center;
+	color: #4d4558;
+}
+#list_cards .card_box.fixed {
+	pointer-events: none;
+}
+#list_cards .card_box.fixed .card,
+#list_cards .card_box.green .card {
+	color: #00cf76;
+	border: 0;
+}

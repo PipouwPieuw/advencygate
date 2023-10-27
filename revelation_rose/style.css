@@ -1,0 +1,104 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	user-select: none;
+	font-size: 0;
+	margin: 0;
+	background: pink;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#wrapper {
+	display: flex;
+	min-height: 100vh;
+	position: relative;
+}
+.list_inputs {
+	width: 400px;
+	max-width: 100vw;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin: auto;
+}
+@media only screen and (min-width: 641px) {
+	.list_inputs {
+		padding: 20px;
+	}
+}
+@media only screen and (max-width: 640px) {
+	.list_inputs {
+		padding: 10px 20px;
+	}
+}
+.list_inputs__item {
+	flex: 0 0 100%;
+	display: flex;
+	position: relative;
+}
+.list_inputs__item:before {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	border-radius: 50%;
+	left: 10px;
+	top: 10px;
+	font-size: 26px;
+	text-align: center;
+	line-height: 50px;
+	font-weight: 700;
+}
+.list_inputs__item--green:before {
+	content: "V";
+	background: #00cf76;
+	color: white;
+}
+.list_inputs__item--blue:before {
+	content: "A";
+	background: blue;
+	color: white;
+}
+.list_inputs__item--red:before {
+	content: "R";
+	background: red;
+	color: white;
+}
+.list_inputs__item--yellow:before {
+	content: "C";
+	background: yellow;
+	color: black;
+}
+.list_inputs__item--white:before {
+	content: "B";
+	background: white;
+	color: black;
+}
+.list_inputs__input {
+	width: 100%;
+	height: 70px;
+	border-radius: 8px;
+	border: 0;
+	padding: 0 15px 0 70px;
+	font-size: 30px;
+	font-weight: 700;
+	border: 2px solid black;
+	background: black;
+	color: white;
+	-webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+.list_inputs__input.solved {
+	pointer-events: none;
+	color: black;
+	background-color: pink;
+	outline: none;
+}
