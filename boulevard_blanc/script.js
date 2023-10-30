@@ -79,6 +79,7 @@ const APPController = (function(UICtrl, APICtrl) {
     var tracks = {};
     var totalTracks = 0;
     var tracksByPlayer = 2;
+    var tracksByGame = 40;
     var isPlaying = false;
     var answers = [];
     var score = 0;
@@ -107,6 +108,7 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Guillaume", [73, 74, 75, 76, 77]],
         ["Walid", [79, 80, 81, 82]],
         ["Jules", [83, 84, 85, 86, 87]],
+        ["Fabien", [88, 89, 90, 91, 92]],
     ];
     if(SHUFFLE) {
         // Shuffle players tracks index
@@ -137,21 +139,31 @@ const APPController = (function(UICtrl, APICtrl) {
         else {
             // TWO TRACKS BY PLAYER
             for(let i=0; i<tracksByPlayer; i++) {
-                var index = i;
-                var playerName = playersData[player][0];
-                var trackIndex = playersData[player][1][index];
-                // Check if track is already in array (avoid having same track more than 1 time in case of track chosen by multiple players)
-                if(tracksIndexes.includes(trackIndex))
-                    trackIndex = playersData[player][1][index+1];
-                tracksIndexes.push(trackIndex);
-                var data = [playerName, trackIndex];
-                setList.push(data);
+                // var index = i;
+                // var trackIndex = playersData[player][1][index];
+                addToSetlist(playersData[player]);
             }
         }
     }
-    /*console.log(setList);*/
+    while(setList.length < tracksByGame) {
+        playersData = shuffleArray(playersData);
+        addToSetlist(playersData[0]);
+
+    }
+    // console.log(setList);
     if(SHUFFLE) {
         setList = shuffleArray(setList);
+    }
+
+    function addToSetlist(player) {
+        var playerName = player[0];
+        var trackIndex = player[1].pop();
+        // Check if track is already in array (avoid having same track more than 1 time in case of track chosen by multiple players)
+        if(tracksIndexes.includes(trackIndex))
+            trackIndex = player[1].pop();
+        tracksIndexes.push(trackIndex);
+        var data = [playerName, trackIndex];
+        setList.push(data);
     }
 
     // get playlist on page load
