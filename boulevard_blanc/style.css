@@ -84,6 +84,8 @@ button {
 .game_display {
 	overflow: auto;
 	padding-bottom: 10px;
+	width: 580px;
+	max-width: 100%;
 }
 .track_display__wrapper {
 	width: 100%;
