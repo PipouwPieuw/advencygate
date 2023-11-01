@@ -54,7 +54,7 @@ $(document).ready(function() {
 		for(erg in pok)
 			if(!pok[erg])
 				return;
-		var v = String.fromCharCode(103, 114, 97, 110, 100, 114, 111, 110, 100);
+		var v = mik(66, 79, 74, 65, 78, 71, 76, 69, 83);
 		var timeOffsetInput = 0;
 		var isEven = true;
 		$('.js-input').each(function() {

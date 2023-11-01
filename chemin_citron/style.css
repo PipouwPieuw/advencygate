@@ -16,6 +16,23 @@ ul {
 	padding: 0;
 	margin: 0;
 }
+.show_modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	border-radius: 0 0 5px 0;
+	background: url(assets/icons/open.svg) 9px 9px no-repeat yellow;
+	background-size: 36px auto;
+	cursor: pointer;
+}
+.show_modal:not(.visible) {
+	display: none;
+}
+.show_modal:hover {
+	opacity: .7;
+}
 .list_timeline {
 	position: relative;
 	width: 800px;
@@ -263,6 +280,7 @@ ul {
 }
 .modal_overlay {
 	cursor: default;
+	background: black;
 }
 .modal_overlay__inner {
 	background: yellow;
@@ -316,7 +334,8 @@ body:not(.solved) .overlay__button {
 .icon_picker,
 .icon_picker__icon,
 .overlay__button,
-.modal_overlay__close {
+.modal_overlay__close,
+.show_modal {
 	-webkit-transition: all ease 0.3s;
     -moz-transition: all ease 0.3s;
     -ms-transition: all ease 0.3s;

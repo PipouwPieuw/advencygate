@@ -1,7 +1,8 @@
 
 $(document).ready(function() {
 	var soundSwap = new Audio('assets/swap.wav');
-
+	var dong = String.fromCharCode;
+	
     $('.card_box:not(.fixed)').draggable({
         zIndex: 2,
         revert: false,
@@ -103,7 +104,7 @@ $(document).ready(function() {
 		for(let i = 1; i<=amount; i++) {
 		    setTimeout(function() {
 				var zero = i < 10 ? '0' : '';
-				$('.card_container[data-pos=' + zero + i + ']').attr('data-char', String.fromCharCode(a.shift()));
+				$('.card_container[data-pos=' + zero + i + ']').attr('data-char', dong(a.shift()));
 				soundSwap.pause();
 				soundSwap.currentTime = 0;
 				soundSwap.play();
