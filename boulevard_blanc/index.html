@@ -18,7 +18,7 @@
         <button class="start_game js-play-track">Commencer à jouer</button>
         <span class="end_game">Jeu terminé</span>
         <audio id="audio_player" class="audio_player js-audio-player" src=""></audio>
-        <span class="score_wrapper">
+        <span class="score_wrapper js-score-wrapper">
             Score :<span class="score_display js-score"></span>
         </span>
         <div class="game_display">
@@ -28,7 +28,8 @@
                         <img class="track_display__cover js-cover" src=""/>
                     </div>
                     <div class="track_display__details track_display__half track_display__half--details">
-                       <div class="track_display__name js-name"></div>
+                        <span class="track_display__number js-track-number"></span>
+                        <div class="track_display__name js-name"></div>
                         <div class="track_display__artist js-artist"></div>
                     </div>
                 </div>

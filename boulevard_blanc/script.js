@@ -74,20 +74,19 @@ const UIController = (function() {
 })();
 
 const APPController = (function(UICtrl, APICtrl) {
+    // get input field object ref
+    const DOMInputs = UICtrl.inputField();
     const SHUFFLE = true;
     const DEVMODE = false;
     var tracks = {};
-    var totalTracks = 0;
-    var tracksByPlayer = 2;
-    var tracksByGame = 40;
     var isPlaying = false;
     var answers = [];
     var score = 0;
+    var playedTracks = 0;
     var audioPlayer = document.getElementById("audio_player");
     var jsAudioPlayer = $('.js-audio-player');
     var soundRight = new Audio('assets/right.m4a');
     var soundWrong = new Audio('assets/wrong.m4a');
-
     // Data
     var playersData = [
         ["Pierre", [0, 1, 2, 3, 4]],
@@ -106,61 +105,78 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Olivier", [63, 64, 65, 66, 67]],
         ["Cédric M.", [68, 69, 70, 71, 72]],
         ["Guillaume", [73, 74, 75, 76, 77]],
-        ["Walid", [79, 80, 81, 82]],
+        ["Walid", [78, 79, 80, 81, 82]],
         ["Jules", [83, 84, 85, 86, 87]],
         ["Fabien", [88, 89, 90, 91, 92]],
     ];
-    if(SHUFFLE) {
-        // Shuffle players tracks index
-        for(player in playersData) {
-            playersData[player][1] = shuffleArray(playersData[player][1]);
-        }
-        // Shuffle players
-        playersData = shuffleArray(playersData);
-        /*console.log(playersData);*/
-    }
-
+    var playersDataBuild = JSON.parse(JSON.stringify(playersData));
+    var tracksByGame = 40;
+    var tracksByPlayer = Math.floor(tracksByGame / playersData.length);
     var playersAmount = playersData.length;
     var playerIndexes = [...Array(playersAmount+1).keys()];
-    playerIndexes.pop();
-
-    // get input field object ref
-    const DOMInputs = UICtrl.inputField();
-
-    // Build setlist from players traks
     var setList = [];
     var tracksIndexes = [];
-    for(player in playersData) {
-        if(DEVMODE) {
-            // ALL TRACKS
-            for(track in playersData[player][1])
-                setList.push([playersData[player][0], playersData[player][1][track]]);
+
+    function buildSetlist() {
+        if(SHUFFLE) {
+            // Shuffle players tracks index
+            for(player in playersDataBuild) {
+                playersDataBuild[player][1] = shuffleArray(playersDataBuild[player][1]);
+            }
+            // Shuffle players
+            playersDataBuild = shuffleArray(playersDataBuild);
+            /*console.log(playersDataBuild);*/
         }
-        else {
-            // TWO TRACKS BY PLAYER
-            for(let i=0; i<tracksByPlayer; i++) {
-                // var index = i;
-                // var trackIndex = playersData[player][1][index];
-                addToSetlist(playersData[player]);
+
+        playerIndexes.pop();
+
+        // Build setlist from players traks
+        for(player in playersDataBuild) {
+            if(DEVMODE) {
+                // ALL TRACKS
+                for(track in playersDataBuild[player][1])
+                    setList.push([playersDataBuild[player][0], playersDataBuild[player][1][track]]);
+            }
+            else {
+                // N TRACKS BY PLAYER
+                for(let i=0; i<tracksByPlayer; i++) {
+                    // var index = i;
+                    // var trackIndex = playersDataBuild[player][1][index];
+                    if(playersDataBuild[player][1].length == 0)
+                        break;
+                    addToSetlist(playersDataBuild[player]);
+                }
+                //console.log(playersDataBuild);
             }
         }
-    }
-    while(setList.length < tracksByGame) {
-        playersData = shuffleArray(playersData);
-        addToSetlist(playersData[0]);
-
-    }
-    // console.log(setList);
-    if(SHUFFLE) {
-        setList = shuffleArray(setList);
+        // Remainder tracks to fill setlist
+        console.log(setList.length);
+        while(setList.length < tracksByGame && setList.length < tracks.items.length && playersDataBuild.length > 0) {
+            playersDataBuild = shuffleArray(playersDataBuild);
+            if(playersDataBuild[0][1].length == 0) {
+                playersDataBuild.shift();
+            }
+            else {
+                addToSetlist(playersDataBuild[0]);
+            }
+        }
+        // console.log(setList);
+        if(SHUFFLE) {
+            setList = shuffleArray(setList);
+        }
+        console.log(setList);
+        console.log(playersDataBuild);
+        $('#wrapper').addClass('initialized');
     }
 
     function addToSetlist(player) {
         var playerName = player[0];
         var trackIndex = player[1].pop();
         // Check if track is already in array (avoid having same track more than 1 time in case of track chosen by multiple players)
-        if(tracksIndexes.includes(trackIndex))
-            trackIndex = player[1].pop();
+        if(tracksIndexes.includes(trackIndex)) {
+            return;
+            // trackIndex = player[1].pop();
+        }
         tracksIndexes.push(trackIndex);
         var data = [playerName, trackIndex];
         setList.push(data);
@@ -168,7 +184,6 @@ const APPController = (function(UICtrl, APICtrl) {
 
     // get playlist on page load
     const loadPlaylist = async () => {
-
         //get the token
         const token = await APICtrl.getToken();           
         //store the token onto the page
@@ -183,13 +198,14 @@ const APPController = (function(UICtrl, APICtrl) {
 	            console.log('----------');
 	        }
 	    }
-        $('#wrapper').addClass('initialized');
+        buildSetlist();
         /*console.log(tracks);*/
-        totalTracks = tracks.total;
+        // totalTracks = tracks.total;
     }
 
     DOMInputs.playTrackButton.addEventListener('click', async (e) => {
         $('.js-wrapper').addClass('game_started');
+        $('.js-score-wrapper').addClass('visible');
         playTrack();
     });
 
@@ -198,6 +214,9 @@ const APPController = (function(UICtrl, APICtrl) {
         // Reset board        
         $('.js-answer').removeClass('correct');
         $('.js-answer').removeClass('incorrect');
+        // Update track number
+        playedTracks += 1;
+        updateTrackNumber();
         // Track indexes
         /*var index0 = Math.floor(Math.random() * totalTracks);*/
         var currentData = setList.shift();
@@ -262,7 +281,7 @@ const APPController = (function(UICtrl, APICtrl) {
             soundRight.currentTime = 0;
             soundRight.play();
            score += 1;
-           updateScore(score);
+           updateScore();
         }
         else {
             soundWrong.pause();
@@ -299,7 +318,11 @@ const APPController = (function(UICtrl, APICtrl) {
         return array;
     }
 
-    function updateScore(score) {
+    function updateTrackNumber() {
+        $('.js-track-number').text(playedTracks);
+    }
+
+    function updateScore() {
         $('.js-score').text(score);
     }
 

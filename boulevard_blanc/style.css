@@ -35,14 +35,22 @@ button {
 	max-width: 610px;
 	margin: auto;
 	padding: 10px 10px 75px 10px;
-	-webkit-transition: all ease .4s;
-    -moz-transition: all ease .4s;
-    -ms-transition: all ease .4s;
-    transition: all ease .4s;
+	-webkit-transition: opacity ease .4s;
+    -moz-transition: opacity ease .4s;
+    -ms-transition: opacity ease .4s;
+    transition: opacity ease .4s;
+}
+@media only screen and (max-width: 640px) {
+	#wrapper {	
+		padding: 10px 10px 50px 10px;
+	}
 }
 #wrapper:not(.initialized) {
 	opacity: 0;
 	pointer-events: none;
+}
+#wrapper:not(.game_started) {
+	padding-bottom: 10px;
 }
 #wrapper:not(.game_started) .track_display__wrapper,
 #wrapper:not(.game_started) .list_answers,
@@ -110,6 +118,7 @@ button {
 .track_display__half {
 	flex: 0 0 50%;
 	width: 50%;
+	position: relative;
 }
 @media only screen and (max-width: 640px) {
 	.track_display__half--cover {
@@ -119,6 +128,32 @@ button {
 	.track_display__half--details {
 		flex: 0 0 calc(100% - 100px);
 		width: calc(100% - 100px);
+	}
+}
+.track_display__number {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60px;
+	height: 60px;
+	background: white;
+	border-left: 4px solid black;
+	border-bottom: 4px solid black;
+	border-radius: 0 0 0 var(--radius);
+	font-size: 30px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media only screen and (max-width: 640px) {
+	.track_display__number {
+		font-size: 20px;
+		width: 50px;
+		height: auto;
+		bottom: 0;
+		border-bottom: 0;
+		border-radius: 0;
 	}
 }
 .track_display__cover {
@@ -140,15 +175,15 @@ button {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 15px;
+	padding: 15px 65px 15px 15px;
 }
 @media only screen and (max-width: 640px) {	
 	.track_display__details {
-		padding: 5px;
+		padding: 5px 55px 5px 5px;
 	}
 }
 .track_display__name {
-	font-size: 28px;
+	font-size: 26px;
 	font-weight: 700;
 	margin-bottom: 5px;
 }
@@ -248,7 +283,15 @@ button {
 	font-weight: 700;
 	background: white;
 }
-
+@media only screen and (max-width: 640px) {	
+	.score_wrapper {
+		font-size: 20px;
+		height: 50px;
+	}
+}
+.score_wrapper:not(.visible) {
+	display: none;
+}
 .score_display {
-	margin-left: 10px;
+	padding-left: 10px;
 }
