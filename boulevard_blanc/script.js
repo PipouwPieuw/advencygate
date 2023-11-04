@@ -78,6 +78,7 @@ const APPController = (function(UICtrl, APICtrl) {
     const DOMInputs = UICtrl.inputField();
     const SHUFFLE = true;
     const DEVMODE = false;
+    const TRACKSBYGAME = 40;
     var tracks = {};
     var isPlaying = false;
     var answers = [];
@@ -110,12 +111,13 @@ const APPController = (function(UICtrl, APICtrl) {
         ["Fabien", [88, 89, 90, 91, 92]],
     ];
     var playersDataBuild = JSON.parse(JSON.stringify(playersData));
-    var tracksByGame = 40;
-    var tracksByPlayer = Math.floor(tracksByGame / playersData.length);
+    var tracksByPlayer = Math.floor(TRACKSBYGAME / playersData.length);
     var playersAmount = playersData.length;
     var playerIndexes = [...Array(playersAmount+1).keys()];
     var setList = [];
     var tracksIndexes = [];
+    var setListLength = 0;
+    var minScore = 0;
 
     function buildSetlist() {
         if(SHUFFLE) {
@@ -146,12 +148,10 @@ const APPController = (function(UICtrl, APICtrl) {
                         break;
                     addToSetlist(playersDataBuild[player]);
                 }
-                //console.log(playersDataBuild);
             }
         }
         // Remainder tracks to fill setlist
-        console.log(setList.length);
-        while(setList.length < tracksByGame && setList.length < tracks.items.length && playersDataBuild.length > 0) {
+        while(setList.length < TRACKSBYGAME && setList.length < tracks.items.length && playersDataBuild.length > 0) {
             playersDataBuild = shuffleArray(playersDataBuild);
             if(playersDataBuild[0][1].length == 0) {
                 playersDataBuild.shift();
@@ -160,12 +160,11 @@ const APPController = (function(UICtrl, APICtrl) {
                 addToSetlist(playersDataBuild[0]);
             }
         }
-        // console.log(setList);
         if(SHUFFLE) {
             setList = shuffleArray(setList);
         }
-        console.log(setList);
-        console.log(playersDataBuild);
+        setListLength = setList.length;
+        minScore = setListLength - setListLength / 5;
         $('#wrapper').addClass('initialized');
     }
 
@@ -204,11 +203,26 @@ const APPController = (function(UICtrl, APICtrl) {
     }
 
     DOMInputs.playTrackButton.addEventListener('click', async (e) => {
+        $('.js-wrapper').removeClass('game_ended');
         $('.js-wrapper').addClass('game_started');
         $('.js-score-wrapper').addClass('visible');
         playTrack();
     });
 
+    $('.js-replay-game').click(function() {
+        score = 0;
+        updateScore(score);
+        setList = [];
+        tracksIndexes = [];
+        playedTracks = 0;
+        playersDataBuild = JSON.parse(JSON.stringify(playersData));
+        buildSetlist();
+        $('.js-word').text('').hide();
+        $('.js-wrapper').removeClass('game_ended');
+        $('.js-wrapper').addClass('game_started');
+        $('.js-score-wrapper').addClass('visible');
+        playTrack();
+    });
 
     const playTrack = async () => {
         // Reset board        
@@ -304,8 +318,14 @@ const APPController = (function(UICtrl, APICtrl) {
     });
 
     function endGame() {
+        if(score >= minScore)
+            displayWord();
+        var result = getRank(score);
+        $('.js-rank').text(result[0]);
+        $('.js-message').text(result[1]);
         $('.js-wrapper').removeClass('game_started');
         $('.js-wrapper').addClass('game_ended');
+        $('.js-score-wrapper').removeClass('visible');
     }
 
     function shuffleArray(array) {
@@ -324,6 +344,35 @@ const APPController = (function(UICtrl, APICtrl) {
 
     function updateScore() {
         $('.js-score').text(score);
+    }
+
+    function getRank(score) {
+        if(score < setListLength / 8 ) // < 5
+            return ["Déserteur", "Il vaut mieux être triste qu'à perte."];
+        else if(score < setListLength / 4) // < 10
+            return ["Client Maladroit", "\"Dites, je crois que je viens de dépublier ma homepage.\""];
+        else if(score < setListLength / 2 - setListLength / 8) // < 15
+            return ["Développeur Wordpress", "Pourquoi faire de la qualité quand on peut faire du Wordpress ?"];
+        else if(score < setListLength / 2) // < 20
+            return ["Vapoteur Clandestin", "Pour information les zones vertes c'est le couloir et la salle de réunion."];
+        else if(score < setListLength / 2 + setListLength / 8) // < 25
+            return ["Afficionado du télétravail", "C'est bien, mais il faudrait penser à passer au bureau de temps en temps."];
+        else if(score < setListLength - setListLength / 4) // < 30
+            return ["Collègue débonnaire", "Parce notre propre bonheur commence avec celui des autres."];
+        else if(score < setListLength - setListLength / 5) // < 32
+            return ["Pull en preprod", "Encore un petit effort et on sera bons pour le passage en prod."];
+        else if(score < setListLength - setListLength / 20) // < 38
+            return ["Happiness Manager", "Félicitations, c'est une victoire bien méritée."];
+        else if(score < setListLength) // < 40
+            return ["Mise en ligne un vendredi sans accrocs", "D'aucuns diront que c'est un miracle."];
+        else if(score == setListLength) // = 40
+            return ["Manifestation Divine", "Les astres chantent les louanges du propriétaire de ce score parfait."];
+        else
+            return ["", ""];
+    }
+
+    function displayWord() {
+        $('.js-word').text(String.fromCharCode(81, 85, 79, 76, 73, 66, 69, 84)).show();
     }
 
     return {

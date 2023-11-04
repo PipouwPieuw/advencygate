@@ -15,8 +15,18 @@
         <form action="">
             <input type="hidden" id='hidden_token'>
         </form>
+        <span class="game_title">Qui écoute quoi ?</span>
         <button class="start_game js-play-track">Commencer à jouer</button>
-        <span class="end_game">Jeu terminé</span>
+        <div class="end_game">
+            <span class="end_game__title">Jeu terminé</span>
+            <div class="end_game__score_wrapper">
+                <span class="end_game__score"><span class="end_game__label">Score</span><span class="end_game__value js-score"></span></span>
+                <span class="end_game__score"><span class="end_game__label">Rang</span><span class="end_game__value js-rank"></span></span>
+            </div>
+            <span class="end_game__message js-message"></span>
+            <span class="end_game__answer js-word"></span>
+            <button class="replay_game js-replay-game">Rejouer</button>
+        </div>
         <audio id="audio_player" class="audio_player js-audio-player" src=""></audio>
         <span class="score_wrapper js-score-wrapper">
             Score :<span class="score_display js-score"></span>
