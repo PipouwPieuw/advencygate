@@ -73,9 +73,8 @@ const UIController = (function() {
 
 })();
 
-const APPController = (function(UICtrl, APICtrl) {
-    // get input field object ref
-    const DOMInputs = UICtrl.inputField();
+const APPController = (function(UICtrl, APICtrl) {    
+    const DOMInputs = UICtrl.inputField(); // get input field object ref
     const SHUFFLE = true;
     const DEVMODE = false;
     const TRACKSBYGAME = 40;
@@ -84,31 +83,32 @@ const APPController = (function(UICtrl, APICtrl) {
     var answers = [];
     var score = 0;
     var playedTracks = 0;
+    var z = String.fromCharCode;
     var audioPlayer = document.getElementById("audio_player");
     var jsAudioPlayer = $('.js-audio-player');
     var soundRight = new Audio('assets/right.m4a');
     var soundWrong = new Audio('assets/wrong.m4a');
     // Data
     var playersData = [
-        ["Pierre", [0, 1, 2, 3, 4]],
-        ["Gautier", [5, 6, 7, 8, 9]],
-        ["Nadège", [10, 11, 12, 13, 14]],
-        ["Émilie", [15, 16, 17, 18, 19]],
-        ["Tariq", [20, 21, 22, 23, 24]],
-        ["Marie", [25, 26, 27, 28, 29]],
-        ["Bruno", [30, 31, 32, 33, 34]],
-        ["Jérôme", [10, 35, 36, 37, 38]],
-        ["Alison", [39, 40, 41, 42, 43]],
-        ["Tony", [10, 44, 45, 46, 47]],
-        ["JB", [48, 49, 50, 51, 52]],
-        ["Cédric R.", [53, 54, 55, 56, 57]],
-        ["Timothée", [58, 59, 60, 61, 62]],
-        ["Olivier", [63, 64, 65, 66, 67]],
-        ["Cédric M.", [68, 69, 70, 71, 72]],
-        ["Guillaume", [73, 74, 75, 76, 77]],
-        ["Walid", [78, 79, 80, 81, 82]],
-        ["Jules", [83, 84, 85, 86, 87]],
-        ["Fabien", [88, 89, 90, 91, 92]],
+        [z(80, 105, 101, 114, 114, 101), [0, 1, 2, 3, 4]],
+        [z(71, 97, 117, 116, 105, 101, 114), [5, 6, 7, 8, 9]],
+        [z(78, 97, 100, 232, 103, 101), [10, 11, 12, 13, 14]],
+        [z(201, 109, 105, 108, 105, 101), [15, 16, 17, 18, 19]],
+        [z(84, 97, 114, 105, 113), [20, 21, 22, 23, 24]],
+        [z(77, 97, 114, 105, 101), [25, 26, 27, 28, 29]],
+        [z(66, 114, 117, 110, 111), [30, 31, 32, 33, 34]],
+        [z(74, 233, 114, 244, 109, 101), [10, 35, 36, 37, 38]],
+        [z(65, 108, 105, 115, 111, 110), [39, 40, 41, 42, 43]],
+        [z(84, 111, 110, 121), [10, 44, 45, 46, 47]],
+        [z(74, 66), [48, 49, 50, 51, 52]],
+        [z(67, 233, 100, 114, 105, 99, 32, 82, 46), [53, 54, 55, 56, 57]],
+        [z(84, 105, 109, 111, 116, 104, 233, 101), [58, 59, 60, 61, 62]],
+        [z(79, 108, 105, 118, 105, 101, 114), [63, 64, 65, 66, 67]],
+        [z(67, 233, 100, 114, 105, 99, 32, 77, 46), [68, 69, 70, 71, 72]],
+        [z(71, 117, 105, 108, 108, 97, 117, 109, 101), [73, 74, 75, 76, 77]],
+        [z(87, 97, 108, 105, 100), [78, 79, 80, 81, 82]],
+        [z(74, 117, 108, 101, 115), [83, 84, 85, 86, 87]],
+        [z(70, 97, 98, 105, 101, 110), [88, 89, 90, 91, 92]],
     ];
     var playersDataBuild = JSON.parse(JSON.stringify(playersData));
     var tracksByPlayer = Math.floor(TRACKSBYGAME / playersData.length);
@@ -218,6 +218,7 @@ const APPController = (function(UICtrl, APICtrl) {
         playersDataBuild = JSON.parse(JSON.stringify(playersData));
         buildSetlist();
         $('.js-word').text('').hide();
+        $('.js-not-enough').hide();
         $('.js-wrapper').removeClass('game_ended');
         $('.js-wrapper').addClass('game_started');
         $('.js-score-wrapper').addClass('visible');
@@ -320,6 +321,8 @@ const APPController = (function(UICtrl, APICtrl) {
     function endGame() {
         if(score >= minScore)
             displayWord();
+        else
+            $('.js-not-enough').show();
         var result = getRank(score);
         $('.js-rank').text(result[0]);
         $('.js-message').text(result[1]);
@@ -372,7 +375,7 @@ const APPController = (function(UICtrl, APICtrl) {
     }
 
     function displayWord() {
-        $('.js-word').text(String.fromCharCode(81, 85, 79, 76, 73, 66, 69, 84)).show();
+        $('.js-word').text(z(81, 85, 79, 76, 73, 66, 69, 84)).show();
     }
 
     return {
