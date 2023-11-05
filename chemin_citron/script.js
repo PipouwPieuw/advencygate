@@ -96,7 +96,7 @@ $(document).ready(function() {
 		$('.js-timeline-icon').each(function() {
 			str += $(this).attr('data-icon');
 		});
-		if(str == v || true) {
+		if(str == v) {
 			$('.js-modal-text').text(pok(84, 79, 80, 73, 78, 65, 77, 66, 79, 85, 82));
 			$('.js-modal-overlay').addClass('active');
 		}
