@@ -361,7 +361,7 @@ const APPController = (function(UICtrl, APICtrl) {
         else if(score < setListLength / 2 + setListLength / 8) // < 25
             return ["Afficionado du télétravail", "C'est bien, mais il faudrait penser à passer au bureau de temps en temps."];
         else if(score < setListLength - setListLength / 4) // < 30
-            return ["Collègue débonnaire", "Parce notre propre bonheur commence avec celui des autres."];
+            return ["Collègue débonnaire", "Parce que notre propre bonheur commence avec celui des autres."];
         else if(score < setListLength - setListLength / 5) // < 32
             return ["Pull en preprod", "Encore un petit effort et on sera bons pour le passage en prod."];
         else if(score < setListLength - setListLength / 20) // < 38
