@@ -1,8 +1,6 @@
-const APIController = (function() {
-    
-    const clientId = '86ddfb1371f440288486fd86d5553b6b';
-    const clientSecret = 'c825f76ad62e4a7e8b3406607895ee0a';
-
+const APIController = (function() {    
+    const nip = String.fromCharCode(56, 54, 100, 100, 102, 98, 49, 51, 55, 49, 102, 52, 52, 48, 50, 56, 56, 52, 56, 54, 102, 100, 56, 54, 100, 53, 53, 53, 51, 98, 54, 98);
+    const tuc = String.fromCharCode(99, 56, 50, 53, 102, 55, 54, 97, 100, 54, 50, 101, 52, 97, 55, 101, 56, 98, 51, 52, 48, 54, 54, 48, 55, 56, 57, 53, 101, 101, 48, 97);
 
     // private methods
     const _getToken = async () => {
@@ -11,7 +9,7 @@ const APIController = (function() {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/x-www-form-urlencoded', 
-                'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+                'Authorization' : 'Basic ' + btoa(nip + ':' + tuc)
             },
             body: 'grant_type=client_credentials'
         });
