@@ -19,13 +19,14 @@ ul {
 .show_modal {
 	position: fixed;
 	top: 0;
-	left: 0;
+	right: 0;
 	width: 50px;
 	height: 50px;
-	border-radius: 0 0 5px 0;
+	border-radius: 0 0 0 5px;
 	background: url(assets/icons/open.svg) 9px 9px no-repeat yellow;
 	background-size: 36px auto;
 	cursor: pointer;
+	border-color: transparent;
 }
 .show_modal:not(.visible) {
 	display: none;
@@ -261,6 +262,11 @@ ul {
 	border-radius: 16px;
 	max-height: 100%;
 	overflow: auto;
+	position: relative;
+	top: 0;
+}
+.icon_picker:not(.active) .icon_picker__list {
+	top: -20px;
 }
 .icon_picker__list:hover .icon_picker__icon:not(:hover) {
 	opacity: .5;
@@ -279,7 +285,6 @@ ul {
 	}
 }
 .modal_overlay {
-	cursor: default;
 	background: black;
 }
 .modal_overlay__inner {
@@ -291,6 +296,7 @@ ul {
 	justify-content: center;
 	position: relative;
 	top: 0;
+	cursor: default;
 }
 .modal_overlay:not(.active) .modal_overlay__inner {
 	top: -20px;
@@ -332,6 +338,7 @@ body:not(.solved) .overlay__button {
 .modal_overlay__inner,
 .list_timeline__image,
 .icon_picker,
+.icon_picker__list,
 .icon_picker__icon,
 .overlay__button,
 .modal_overlay__close,

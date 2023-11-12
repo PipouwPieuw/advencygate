@@ -24,7 +24,9 @@ $(document).ready(function() {
 	$('.js-modal-open').on('click', function() {
 		$('.js-modal-overlay').addClass('active');
 	});
-	$('.js-modal-close').on('click', function() {
+	$('.js-modal-close, .js-modal-overlay').on('click', function(e) {
+		if(!$(e.target).hasClass('js-modal-close'))
+			return;
 		var delay = 0;
 		if(!$('body').hasClass('solved')) {
 			$('body').addClass('solved');
