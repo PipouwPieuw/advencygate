@@ -26,6 +26,44 @@ button {
     cursor: pointer;
 }
 
+.back_link {
+	position: fixed;
+	z-index: 9;
+	top: 0;
+	left: 0;
+	width: 90px;
+	height: 90px;
+	background: black;
+	color: white;
+	font-size: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	padding-bottom: 4px;
+	border: 4px solid black;
+	border-top: 0;
+	border-left: 0;
+	-webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+@media only screen and (min-width: 641px) {
+	.back_link:hover {
+		background: white;
+		color: black;
+	}
+}
+@media only screen and (max-width: 640px) {
+	.back_link {
+		width: 50px;
+		height: 50px;
+		font-size: 32px;
+		border-width: 2px;
+		padding-bottom: 0;
+	}
+}
 #wrapper {	
 	display: flex;
 	align-items: center;
@@ -70,7 +108,7 @@ button {
 	left: 0;
 	right: 0;
 	height: 90px;
-	padding: 0 30px;
+	padding: 0 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -83,6 +121,12 @@ button {
 	.game_title {
 		font-size: 20px;
 		height: 50px;
+		padding: 0 60px;
+	}
+}
+@media only screen and (max-width: 350px) {
+	.game_title {
+		font-size: 18px;
 	}
 }
 .start_game,
