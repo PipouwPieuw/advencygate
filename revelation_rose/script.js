@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    // Page load
+    setTimeout(function() {
+        $('.page_content').removeClass('loading');
+    }, 500);
+    
 	var mik = String.fromCharCode;
 	var azd = [
 		mik(97, 98, 114, 97, 99, 97, 100, 97, 98, 114, 97, 110, 116, 101, 115, 113, 117, 101),

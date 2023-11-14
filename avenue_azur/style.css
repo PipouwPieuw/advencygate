@@ -21,6 +21,10 @@ ul {
 	padding: 0;
 	margin: 0;
 }
+.page_content.loading {
+	opacity: 0;
+	pointer-events: none;
+}
 .back_link {
 	width: 50px;
 	height: 50px;
@@ -36,10 +40,6 @@ ul {
 	border: 2px solid white;
 	border-top: 0;
 	border-left: 0;
-	-webkit-transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    -ms-transition: all ease 0.3s;
-    transition: all ease 0.3s;
 }
 .back_link:hover {
 	background: blue;
@@ -104,11 +104,7 @@ ul {
 	background-position: left 10px center;
 	background-size: 50px;
 	background-repeat: no-repeat;
-	border: 2px solid white;		
-	-webkit-transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    -ms-transition: all ease 0.3s;
-    transition: all ease 0.3s;
+	border: 2px solid white;
 }
 .list_inputs__input.solved {
 	pointer-events: none;
@@ -272,14 +268,19 @@ ul {
 	background: white;
 	font-size: 30px;
 	text-transform: uppercase;
-	-webkit-transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    -ms-transition: all ease 0.3s;
-    transition: all ease 0.3s;
 	position: relative;
 	top: 0;
 }
 .list_answers__item:not(.visible) {
 	opacity: 0;
 	top: 10px;
+}
+.back_link,
+.list_answers__item,
+.list_inputs__input,
+.page_content {
+	-webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    transition: all ease 0.3s;
 }

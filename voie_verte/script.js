@@ -1,11 +1,12 @@
 
 $(document).ready(function() {
-	var soundSwap = new Audio('assets/swap.wav');
-	var dong = String.fromCharCode;
-
+	// Page load
 	setTimeout(function() {
 		$('.page_content').removeClass('loading');
 	}, 500);
+
+	var soundSwap = new Audio('assets/swap.wav');
+	var dong = String.fromCharCode;
 	
     $('.card_box:not(.fixed)').draggable({
         zIndex: 2,

@@ -20,6 +20,10 @@ ul {
 	box-sizing: border-box;
 }
 
+.page_content.loading {
+	opacity: 0;
+	pointer-events: none;
+}
 .back_link {
 	position: fixed;
 	z-index: 9;
@@ -499,7 +503,8 @@ canvas {
 .app_overlay,
 .list_colors span,
 #pickable_colors,
-#pickable_colors li {
+#pickable_colors li,
+.page_content {
 	-webkit-transition: all ease 0.3s;
     -moz-transition: all ease 0.3s;
     -ms-transition: all ease 0.3s;

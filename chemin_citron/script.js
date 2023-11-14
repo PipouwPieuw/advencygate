@@ -1,5 +1,10 @@
 
 $(document).ready(function() {
+    // Page load
+    setTimeout(function() {
+        $('.page_content').removeClass('loading');
+    }, 500);
+    
 	var activeItem = "";
 	var pok = String.fromCharCode;
 	$(document).on('click', function(e) {

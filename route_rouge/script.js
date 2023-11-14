@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	// Page load
+	setTimeout(function() {
+		$('.page_content').removeClass('loading');
+	}, 500);
+	
 	var boardWidth = $('#list_landscapes').width();
 	var boardHeight = $('#list_landscapes').height();
 	var activeCircle = "";

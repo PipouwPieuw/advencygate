@@ -186,9 +186,39 @@ ul {
 	font-size: 40px;
 	height: 160px;
 	text-decoration: none;
+	cursor: pointer;
+	position: relative;
+}
+.bottom_link:before,
+.bottom_link:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	background: pink;
+	-webkit-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -ms-transition: all ease 1s;
+    transition: all ease 1s;
+}
+.bottom_link:before {
+	left: 0;
+}
+.bottom_link:after {
+	right: 0;
+}
+.bottom_link.triggered {
+	z-index: 1;
+}
+.bottom_link.triggered:before,
+.bottom_link.triggered:after {
+	width: 100vw;
+	height: 100vw;
 }
 @media only screen and (min-width: 641px) {
-	.bottom_link:not(:hover) {
+	.bottom_link:not(:hover):not(.triggered) {
 		height: 80px;
 	}
 	.bottom_link:not(:hover) .bottom_link__text {
