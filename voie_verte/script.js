@@ -2,6 +2,10 @@
 $(document).ready(function() {
 	var soundSwap = new Audio('assets/swap.wav');
 	var dong = String.fromCharCode;
+
+	setTimeout(function() {
+		$('.page_content').removeClass('loading');
+	}, 1000);
 	
     $('.card_box:not(.fixed)').draggable({
         zIndex: 2,
