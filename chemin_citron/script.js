@@ -3,8 +3,22 @@ $(document).ready(function() {
     // Page load
     setTimeout(function() {
         $('.page_content').removeClass('loading');
-    }, 500);
-    
+    }, 500);    
+	$('.js-back-link').on('click', function() {
+		$('.js-page-transition').addClass('visible');
+		var counter = 0;
+		$('.js-page-transition-item').each(function() {
+			counter += 100;
+			var that = $(this);
+			setTimeout(function() {
+				that.addClass('visible');
+			}, counter);
+		});
+		setTimeout(function() {
+			location.href = '/advencygate';
+		}, 1000);
+	});
+	
 	var activeItem = "";
 	var pok = String.fromCharCode;
 	$(document).on('click', function(e) {

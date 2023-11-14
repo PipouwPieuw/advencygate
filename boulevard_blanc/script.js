@@ -1,4 +1,19 @@
-const APIController = (function() {        
+const APIController = (function() {
+    // Page transition
+    $('.js-back-link').on('click', function() {
+        $('.js-page-transition').addClass('visible');
+        var counter = 0;
+        $('.js-page-transition-item').each(function() {
+            counter += 100;
+            var that = $(this);
+            setTimeout(function() {
+                that.addClass('visible');
+            }, counter);
+        });
+        setTimeout(function() {
+            location.href = '/advencygate';
+        }, 1000);
+    });     
     const nip = String.fromCharCode(56, 54, 100, 100, 102, 98, 49, 51, 55, 49, 102, 52, 52, 48, 50, 56, 56, 52, 56, 54, 102, 100, 56, 54, 100, 53, 53, 53, 51, 98, 54, 98);
     const tuc = String.fromCharCode(99, 56, 50, 53, 102, 55, 54, 97, 100, 54, 50, 101, 52, 97, 55, 101, 56, 98, 51, 52, 48, 54, 54, 48, 55, 56, 57, 53, 101, 101, 48, 97);
 

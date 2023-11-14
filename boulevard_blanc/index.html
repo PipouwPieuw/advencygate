@@ -11,7 +11,7 @@
 </head>
 <body>  
     <div id="wrapper" class="js-wrapper">
-        <a href="/advencygate" class="back_link">⇦</a>  
+        <button class="back_link js-back-link">⇦</button>
         <form action="">
             <input type="hidden" id='hidden_token'>
         </form>
@@ -59,6 +59,18 @@
                     <button class="list_answers__name js-answer" data-index="3"></button>
                 </li>
             </ul>
+        </div>
+    </div>
+    <div class="page_transition js-page-transition">
+        <div class="page_transition__wrapper">
+            <ul class="page_transition__list">
+                <li class="page_transition__item page_transition__item--green js-page-transition-item"></li>
+                <li class="page_transition__item page_transition__item--blue js-page-transition-item"></li>
+                <li class="page_transition__item page_transition__item--red js-page-transition-item"></li>
+                <li class="page_transition__item page_transition__item--yellow js-page-transition-item"></li>
+                <li class="page_transition__item page_transition__item--white js-page-transition-item"></li>
+            </ul>
+            <span class="page_transition__bottom js-page-transition-item"></span>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
