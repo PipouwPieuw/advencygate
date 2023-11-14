@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	setTimeout(function() {
 		$('.page_content').removeClass('loading');
-	}, 1000);
+	}, 500);
 	
     $('.card_box:not(.fixed)').draggable({
         zIndex: 2,

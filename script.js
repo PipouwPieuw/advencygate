@@ -8,7 +8,7 @@ $(document).ready(function() {
 		var url = $(this).attr('data-url');
 		setTimeout(function() {
 			location.href = url;
-		}, 1000);
+		}, 500);
 	});
 });
 
