@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	
 	$('.js-route').on('click', function(e) {
+		$('html').addClass('ovh');
 		$('body').addClass('no_click');
 		$(this).addClass('triggered');
 		if($(this).hasClass('list_levels__bg')) {

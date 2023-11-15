@@ -4,6 +4,7 @@ $(document).ready(function() {
 		$('.page_content').removeClass('loading');
 	}, 500);
 	$('.js-back-link').on('click', function() {
+		$('body').addClass('no_scroll');
 		$('.js-page-transition').addClass('visible');
 		var counter = 0;
 		$('.js-page-transition-item').each(function() {

@@ -9,6 +9,9 @@ body {
 	background: blue;
 	font-family: 'Ubuntu', sans-serif;
 }
+body.no_scroll {
+	overflow: hidden;
+}
 body.solved {
 	pointer-events: none;
 }

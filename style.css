@@ -1,7 +1,9 @@
 * {
 	box-sizing: border-box;
 }
-
+html.ovh {
+	overflow: hidden;
+}
 body {
 	user-select: none;
 	font-size: 0;
@@ -26,12 +28,15 @@ ul {
 	flex-direction: column;
 	align-items: center;
 	margin: auto;
-	min-height: 100vh;
+	height: 100vh;
 	position: relative;
 }
 @media only screen and (min-width: 641px) {
 	#wrapper {
 		max-width: 400px;
+	}
+	#wrapper:hover .list_levels:not(:hover) {
+		height: calc(100% - 160px);
 	}
 }
 .list_levels {
@@ -40,6 +45,7 @@ ul {
 	margin: auto;
 	position: relative;
 	width: 400px;
+	height: calc(100% - 80px);
 }
 @media only screen and (max-width: 640px) {
 	.list_levels {
@@ -89,17 +95,20 @@ ul {
 	width: 100%;
 	font-size: 1rem;
 	display: flex;
-	flex-direction: column;
+	/*flex-direction: column;*/
 	justify-content: center;
     align-items: center;
     padding: 20px;
     color: white;
 	text-decoration: none;
-    font-size: 40px;
+    font-size: 4.5vh;
     word-break: break-all;
     gap: 20px;
     cursor: pointer;
     position: relative;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    white-space: nowrap;
 }
 .list_levels__bg:before,
 .list_levels__bg:after {
@@ -126,11 +135,14 @@ ul {
 .list_levels__bg.triggered:before,
 .list_levels__bg.triggered:after {
 	width: 100vw;
-	height: 100vw;
+	height: 100vh;
 }
 @media only screen and (max-width: 640px) {
 	.list_levels__bg {
 		font-size: 20px;
+	}
+	.list_levels__bg.triggered span {
+		opacity: 0;
 	}
 }
 .list_levels__bg--green,
@@ -183,7 +195,7 @@ ul {
 	padding: 20px;
 	width: 100%;
 	color: black;
-	font-size: 40px;
+    font-size: 4.5vh;
 	height: 160px;
 	text-decoration: none;
 	cursor: pointer;
@@ -215,7 +227,7 @@ ul {
 .bottom_link.triggered:before,
 .bottom_link.triggered:after {
 	width: 100vw;
-	height: 100vw;
+	height: 100vh;
 }
 @media only screen and (min-width: 641px) {
 	.bottom_link:not(:hover):not(.triggered) {
@@ -230,7 +242,11 @@ ul {
 		height: 80px;
 		font-size: 20px;
 	}
+	.bottom_link.triggered span {
+		opacity: 0;
+	}
 }
+.list_levels,
 .list_levels__item,
 .list_levels__bg,
 .list_levels__title,

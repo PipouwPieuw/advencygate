@@ -11,7 +11,9 @@ body {
 	margin: 0;
 	font-family: 'Ubuntu', sans-serif;
 }
-
+body.no_scroll {
+	overflow: hidden;
+}
 ul {
 	list-style: none;
 	padding: 0;

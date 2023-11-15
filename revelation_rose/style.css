@@ -9,6 +9,9 @@ body {
 	background: pink;
 	font-family: 'Ubuntu', sans-serif;
 }
+body.no_scroll {
+	overflow: hidden;
+}
 
 ul {
 	list-style: none;
