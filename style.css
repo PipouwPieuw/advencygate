@@ -28,16 +28,21 @@ ul {
 	flex-direction: column;
 	align-items: center;
 	margin: auto;
-	height: -webkit-fill-available;
-	min-height: 100vh;
 	position: relative;
 }
 @media only screen and (min-width: 641px) {
 	#wrapper {
 		max-width: 400px;
+		height: 100vh;
 	}
 	#wrapper:hover .list_levels:not(:hover) {
 		height: calc(100% - 160px);
+	}
+}
+@media only screen and (max-width: 640px) {
+	#wrapper {
+		height: 100%;
+		height: -webkit-fill-available;
 	}
 }
 .list_levels {
