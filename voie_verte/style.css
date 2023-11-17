@@ -105,7 +105,6 @@ body {
 	margin: 0;
 	background: #00cf76;
 	font-family: 'Ubuntu', sans-serif;
-	padding: 80px 0;
 }
 body.solved {
 	pointer-events: none;
@@ -128,9 +127,6 @@ figure {
 	pointer-events: none;
 }
 .back_link {
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 50px;
 	height: 50px;
 	border-radius: 0 0 5px 0;
@@ -147,11 +143,28 @@ figure {
 	border-left: 0;
 	cursor: pointer;
 }
-.back_link:hover {
-	background: #00cf76;
-	color: white;
+@media only screen and (min-width: 641px) {
+	body {
+		padding: 80px 0;
+	}
+	.back_link {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+	.back_link:hover {
+		background: red;
+		color: white;
+	}
 }
-
+@media only screen and (max-width: 640px) {
+	.back_link {
+		margin-bottom: 30px;
+	}
+	.back_link span {
+		height: 56px;
+	}
+}
 #wrapper {	
 	display: flex;
 	align-items: center;

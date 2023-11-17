@@ -24,10 +24,6 @@ ul {
 	pointer-events: none;
 }
 .back_link {
-	position: fixed;
-	z-index: 2;
-	top: 0;
-	left: 0;
 	width: 50px;
 	height: 50px;
 	border-radius: 0 0 5px 0;
@@ -48,15 +44,18 @@ ul {
 	body {
 		padding: 0 80px;
 	}
+	.back_link {
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		left: 0;
+	}
 	.back_link:hover {
 		background: red;
 		color: white;
 	}
 }
 @media only screen and (max-width: 640px) {
-	body {
-		padding: 80px 0;
-	}
 	.back_link span {
 		height: 56px;
 	}

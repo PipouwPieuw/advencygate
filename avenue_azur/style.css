@@ -45,10 +45,6 @@ ul {
 	border-left: 0;
 	cursor: pointer;
 }
-.back_link:hover {
-	background: blue;
-	color: white;
-}
 @media only screen and (min-width: 641px) {
 	body {
 		padding: 0 80px;
@@ -58,10 +54,17 @@ ul {
 		top: 0;
 		left: 0;
 	}
+	.back_link:hover {
+		background: red;
+		color: white;
+	}
 }
 @media only screen and (max-width: 640px) {
 	.back_link {
 		margin-bottom: 30px;
+	}
+	.back_link span {
+		height: 56px;
 	}
 }
 #wrapper {
@@ -85,6 +88,9 @@ ul {
 @media only screen and (max-width: 640px) {
 	.list_inputs {
 		padding: 10px 20px;
+	}
+	#wrapper {
+		padding-bottom: 60px;
 	}
 }
 .list_inputs__item {

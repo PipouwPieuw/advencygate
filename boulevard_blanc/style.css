@@ -28,10 +28,7 @@ button {
     cursor: pointer;
 }
 .back_link {
-	position: fixed;
 	z-index: 9;
-	top: 0;
-	left: 0;
 	width: 90px;
 	height: 90px;
 	background: black;
@@ -51,6 +48,11 @@ button {
 		background: white;
 		color: black;
 	}
+	.back_link {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
 }
 @media only screen and (max-width: 640px) {
 	.back_link {
@@ -59,6 +61,9 @@ button {
 		font-size: 32px;
 		border-width: 2px;
 		padding-bottom: 0;
+	}
+	.back_link span {
+		height: 56px;
 	}
 }
 #wrapper {	
