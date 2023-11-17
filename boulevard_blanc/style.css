@@ -28,6 +28,9 @@ button {
     cursor: pointer;
 }
 .back_link {
+	position: fixed;
+	top: 0;
+	left: 0;
 	z-index: 9;
 	width: 90px;
 	height: 90px;
@@ -47,11 +50,6 @@ button {
 	.back_link:hover {
 		background: white;
 		color: black;
-	}
-	.back_link {
-		position: fixed;
-		top: 0;
-		left: 0;
 	}
 }
 @media only screen and (max-width: 640px) {
