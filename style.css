@@ -28,6 +28,7 @@ ul {
 	flex-direction: column;
 	align-items: center;
 	margin: auto;
+	height: -webkit-fill-available;
 	height: 100vh;
 	position: relative;
 }
@@ -37,16 +38,6 @@ ul {
 	}
 	#wrapper:hover .list_levels:not(:hover) {
 		height: calc(100% - 160px);
-	}
-}
-@media only screen and (max-width: 640px) {
-	.mobile_wrapper {
-		position: fixed;
-		inset: 0;
-		display: flex;
-	}
-	#wrapper {
-		width: 100%;
 	}
 }
 .list_levels {
