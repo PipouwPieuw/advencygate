@@ -14,9 +14,9 @@ $(document).ready(function() {
 				that.addClass('visible');
 			}, counter);
 		});
-		// setTimeout(function() {
-		// 	location.href = '/advencygate';
-		// }, 1000);
+		setTimeout(function() {
+			location.href = '/advencygate';
+		}, 1000);
 	});
 	
 	var mik = String.fromCharCode;

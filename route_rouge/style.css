@@ -19,14 +19,13 @@ ul {
 * {
 	box-sizing: border-box;
 }
-
 .page_content.loading {
 	opacity: 0;
 	pointer-events: none;
 }
 .back_link {
 	position: fixed;
-	z-index: 9;
+	z-index: 2;
 	top: 0;
 	left: 0;
 	width: 50px;
@@ -45,27 +44,26 @@ ul {
 	border-left: 0;
 	cursor: pointer;
 }
-.back_link:hover {
-	background: red;
-	color: white;
-}
 @media only screen and (min-width: 641px) {
 	body {
 		padding: 0 80px;
+	}
+	.back_link:hover {
+		background: red;
+		color: white;
 	}
 }
 @media only screen and (max-width: 640px) {
 	body {
 		padding: 80px 0;
 	}
+	.back_link span {
+		height: 56px;
+	}
 }
 #wrapper {
 	margin: auto;
 	position: relative;
-	transform-style: preserve-3d;
-}
-#wrapper.solved {
-	transform : rotateY(180deg);
 }
 
 #flip_board {
@@ -80,9 +78,6 @@ ul {
 	cursor: pointer;
 	display: none;
 }
-body.solved #flip_board {
-	display: flex;
-}
 
 @media only screen and (min-width: 1200px) {
 	body {
@@ -91,6 +86,7 @@ body.solved #flip_board {
 	#wrapper {
 		min-width: 1100px;
 		height: 820px;
+		transform-style: preserve-3d;
 	}
 	#board,
 	#board_back {
@@ -183,8 +179,18 @@ body.solved #flip_board {
 	.landscape:nth-child(3) .solved_paper {
 		transform: rotate(10deg);
 	}
+	body.solved #flip_board {
+		display: flex;
+	}
+	#wrapper.solved {
+		transform : rotateY(180deg);
+	}
 }
 .landscape.solved {
+	position: relative;
+}
+.landscape.solved,
+.landscape.solved * {
 	pointer-events: none;
 }
 .landscape.solved:before,
@@ -264,8 +270,10 @@ body.solved #flip_board {
 .landscape:not(.active) .list_colors span:before {
 	font-size: 12px;
 }
-.landscape.active .list_colors:hover span:not(:hover) {
-	opacity: 0.7;
+@media only screen and (min-width: 641px) {
+	.landscape.active .list_colors:hover span:not(:hover) {
+		opacity: 0.7;
+	}
 }
 
 .app_overlay {
@@ -307,11 +315,13 @@ body.solved #flip_board {
 #pickable_colors:not(.active) span {
 	pointer-events: none;
 }
-#pickable_colors:not(.bottom) {
-	top: 252px;
-}
-#pickable_colors.bottom {
-	bottom: 316px;
+@media only screen and (min-width: 641px) {
+	#pickable_colors:not(.bottom) {
+		top: 252px;
+	}
+	#pickable_colors.bottom {
+		bottom: 316px;
+	}
 }
 #pickable_colors:before {
 	content: "";
@@ -375,8 +385,10 @@ body.solved #flip_board {
 	background-color: #FFFFFF;
 	cursor: pointer;
 }
-#pickable_colors:hover li:not(:hover) {
-	opacity: 0.7;
+@media only screen and (min-width: 641px) {
+	#pickable_colors:hover li:not(:hover) {
+		opacity: 0.7;
+	}
 }
 
 .solved_paper {
@@ -552,6 +564,11 @@ canvas {
 	width: 400px;
 	max-width: 100vw;
 }
+@media only screen and (max-width: 640px) {
+	.page_transition__wrapper {
+		width: 100%;
+	}
+}
 .page_transition__list {
 	display: flex;
 	flex: 1;
@@ -605,4 +622,64 @@ canvas {
 }
 .page_transition__bottom.visible {
 	height: 80px;
+}
+@media only screen and (max-width: 1199px) {
+	.page_content {
+		width: 100%;
+	}
+	#list_landscapes{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 60px;
+	}
+	#pickable_colors {
+		left: 0;
+		max-width: 100%;
+		position: fixed;
+    	inset: 0;
+    	overflow: auto;
+	}
+	.app_overlay.front {
+		border-radius: 0;
+	}
+	.inner_mobile {
+		position: relative;
+		pointer-events: all;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+	.landscape .inner.active {
+		position: fixed;
+		z-index: 2;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		pointer-events: none;
+	}
+	.solved_paper {
+		top: 0;
+	} 
+	#wrapper {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+	#wrapper.solved #board{
+		display: none;
+	}
+	#wrapper.solved #board_back {
+		display: block;
+	}
+	#answer {
+	    position: static;
+		transform: rotate(0);
+		max-width: 100%;
+		max-height: 100%;
+	}
+	#answer  .logo_adv,
+	#answer .answer_pin {
+		display: none;
+	}
 }

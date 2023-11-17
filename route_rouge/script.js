@@ -37,12 +37,17 @@ $(document).ready(function(){
 			soundZoomIn.play();
 			elem.addClass('active');
 			$('.app_overlay').addClass('active');
-			elem.find('.inner').css({
-				'z-index': 2,
-				'width': displayWidth + 'px',				
-				'left': (boardWidth - displayWidth) / 2 - elemPos.left + 'px',
-		        'top': (boardHeight - imgHeight) / 2 - elemPos.top + 'px'
-			});
+			if($(window).width() > 1199) {
+				elem.find('.inner').css({
+					'z-index': 2,
+					'width': displayWidth + 'px',				
+					'left': (boardWidth - displayWidth) / 2 - elemPos.left + 'px',
+			        'top': (boardHeight - imgHeight) / 2 - elemPos.top + 'px'
+				});
+			}
+			else {
+				elem.find('.inner').addClass('active');
+			}
 		}
 	});
 
@@ -179,12 +184,17 @@ $(document).ready(function(){
 		soundZoomOut.play();
 		elem.removeClass('active');
 		$('.app_overlay').removeClass('active');
-		elem.find('.inner').css({
-			'z-index': 0,
-			'width': '300px',	
-			'left': 0,
-		    'top': 0
-		});
+		if($(window).width() > 1199) {
+			elem.find('.inner').css({
+				'z-index': 0,
+				'width': '300px',	
+				'left': 0,
+			    'top': 0
+			});
+		}
+		else {			
+			elem.find('.inner').removeClass('active');
+		}
 	}
 
 	function drawText() {

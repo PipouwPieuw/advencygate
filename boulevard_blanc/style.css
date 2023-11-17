@@ -463,6 +463,11 @@ button {
 	width: 400px;
 	max-width: 100vw;
 }
+@media only screen and (max-width: 640px) {
+	.page_transition__wrapper {
+		width: 100%;
+	}
+}
 .page_transition__list {
 	display: flex;
 	flex: 1;

@@ -42,7 +42,6 @@ ul {
 @media only screen and (max-width: 640px) {
 	#wrapper {
 		height: 100%;
-		height: -webkit-fill-available;
 	}
 }
 .list_levels {
