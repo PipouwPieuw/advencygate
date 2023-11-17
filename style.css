@@ -39,6 +39,16 @@ ul {
 		height: calc(100% - 160px);
 	}
 }
+@media only screen and (max-width: 640px) {
+	.mobile_wrapper {
+		position: fixed;
+		inset: 0;
+		display: flex;
+	}
+	#wrapper {
+		width: 100%;
+	}
+}
 .list_levels {
 	display: flex;
 	flex: 1;
