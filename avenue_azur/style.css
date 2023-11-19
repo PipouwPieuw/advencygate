@@ -15,8 +15,11 @@ body.no_scroll {
 body.solved {
 	pointer-events: none;
 }
-body.solved * {
+body.solved *:not(.back_link) {
 	pointer-events: none !important;
+}
+body.solved .back_link {
+	pointer-events: all;
 }
 
 ul {
