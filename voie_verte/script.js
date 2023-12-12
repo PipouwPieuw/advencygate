@@ -68,6 +68,7 @@ $(document).ready(function () {
                             var l = o.attr("data-pos"),
                                 p = $(".card_container[data-pos=" + l + "]").position();
                             c.css({ "z-index": 3, "pointer-events": "none" }).animate({ left: p.left, top: p.top }, 200).attr("data-pos", l).addClass("placed"),
+                            localStorage.setItem("vv-desktop-data-pos-" + c.attr('data-val') , l)
                             setTimeout(function () {
                                 c.css({ "pointer-events": "all" });
                             }, 200);
